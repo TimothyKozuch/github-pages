@@ -5,6 +5,9 @@ html {
 body {
     background-color: #333;
     color: whitesmoke;
+    max-width: 1400px;      /* or any width you prefer */
+    margin: 0 auto;        /* centers the body horizontally */
+    padding: 20px;
 }
 
 a {
@@ -24,4 +27,19 @@ table, tr, th, td, caption{
     font-family: 'Courier New', Courier, monospace;
     border-collapse: collapse;
     padding: .5rem;
+}
+
+img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.player-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.player-text {
+  flex: 1;
 }

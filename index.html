@@ -5,7 +5,7 @@
     <meta name="author" content="Tim Kozuch" />
     <meta
       name="description"
-      content="This page contains all the things I am learning how to create as I learn HTML." />
+      content="This page contains all the things I am learning how to create." />
     <title>My First Web Page</title>
     <link rel="icon" href="cute-avocado.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="main.css" type="text/css" />
@@ -18,7 +18,7 @@
       <nav aria-label="primary-navigation">
         <ul>
           <li>
-            <a href="#html">Learning HTML</a>
+            <a href="#OneForSorrow">Pygame project</a>
           </li>
           <li>
             <a href="#vacation">Planning a vacation</a>
@@ -32,23 +32,124 @@
 
     <hr />
     <main>
-      <article id="html">
-        <h2>I'm Ready to Learn HTML</h2>
-        <p>This is my first web page.</p>
+      <article id="OneForSorrow">
+        <h2>One For Sorrow</h2>
+        <p>My introduction to pygame and video game design</p>
         <section>
-          <h3>HTML5</h3>
-          <img
-            src="img/cute-avocado.jpg"
-            alt="avacado image"
-            title="I am learning HTML5"
-            width="200"
-            height="200" />
-          <figure>
-            <figcaption>An Example of HTML5 code</figcaption>
-            <p>
-              <code>&lt;h1&gt;Hello World!&lt;/h1&gt;</code>
-            </p>
-          </figure>
+          <div class="player-flex">
+            <div class="player-text">
+              <h3>I made custom animations within with aesprite.</h3>
+              <p>
+                This is an example of my pixel art. Although it may be in a gif format here, all animations are a sequence of png files in the game played in sequence.
+              </p>
+              <p>
+                I used aesprite because it is popular for making pixel art, animations, and sprite sheets.
+              </p>
+            </div>
+            <figure>
+              <img
+                src="img/player.png"
+                alt="example player image"
+                title="Lyla"
+                width="200"
+                height="200" />
+              <figcaption>Lyla</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="img/melody_idle_0.png"
+                alt="example player image"
+                title="Melody"
+                width="200"
+                height="200" />
+              <figcaption>Melody</figcaption>
+            </figure>
+            </div>
+          <h3>I made custom dialogue trees using json files.</h3>  
+          <div id="dialogue-demo">
+            <div id="dialogue-box"></div>
+            <div id="choices"></div>
+            <button id="restart-dialogue" style="margin-top:1em;">Restart Conversation</button>
+          </div>
+          <script>
+            // Simple branching dialogue demo (sample from your JSON)
+            const dialogue = {
+              start: {
+                speaker: "Lyla",
+                text: "The night is so empty and quiet, it's ...",
+                choices: [
+                  { text: "Terrifying (scared of the dark, honest)", next: "Peaceful" },
+                  { text: "Nothing to be afraid of (brave face, liar)", next: "Peaceful" }
+                ]
+              },
+              Peaceful: {
+                speaker: "Lyla",
+                text: "Peaceful...",
+                choices: [
+                  { text: "Oh...", next: "It's_ok_Mel" },
+                  { text: "Nothing good comes from silence...", next: "It's_ok_Mel" }
+                ]
+              },
+              "It's_ok_Mel": {
+                speaker: "Lyla",
+                text: "It's ok Mel, you can sleep in here tonight",
+                choices: [
+                  { text: "That's not why...ok...so you wont get scared", next: "Never_scared_end" }
+                ]
+              },
+              Never_scared_end: {
+                speaker: "Lyla",
+                text: "I'm never scared with you around",
+                choices: []
+              }
+            };
+
+            let currentNode = "start";
+
+            function appendDialogue(nodeKey) {
+              const node = dialogue[nodeKey];
+              const dialogueBox = document.getElementById("dialogue-box");
+              // Append the new line
+              const p = document.createElement("p");
+              p.innerHTML = `<strong>${node.speaker}:</strong> ${node.text}`;
+              dialogueBox.appendChild(p);
+
+              const choicesDiv = document.getElementById("choices");
+              choicesDiv.innerHTML = "";
+              node.choices.forEach(choice => {
+                const btn = document.createElement("button");
+                btn.textContent = choice.text;
+                btn.onclick = () => {
+                  // Append the user's choice
+                  const userP = document.createElement("p");
+                  userP.innerHTML = `<em>You:</em> ${choice.text}`;
+                  dialogueBox.appendChild(userP);
+                  appendDialogue(choice.next);
+                  // Remove buttons after choice
+
+                };
+                choicesDiv.appendChild(btn);
+              });
+              if (node.choices.length === 0) {
+                const endP = document.createElement("p");
+                endP.innerHTML = "<em>End of conversation.</em>";
+                dialogueBox.appendChild(endP);
+              }
+            }
+
+            function restartDialogue() {
+              document.getElementById("dialogue-box").innerHTML = "";
+              document.getElementById("choices").innerHTML = "";
+              appendDialogue("start");
+            }
+
+            // Initialize
+            restartDialogue();
+
+            document.getElementById("restart-dialogue").onclick = restartDialogue;
+          </script>
+          <h3>I created unique mechanics that complimented the world and story.</h3>
+          <h3>I implemented controller support into the control scheme.</h3>
         </section>
         <section>
           <h3>My Daily Schedule</h3>

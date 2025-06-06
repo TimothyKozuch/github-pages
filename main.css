@@ -43,3 +43,24 @@ img {
 .player-text {
   flex: 1;
 }
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1em;
+}
+.carousel img {
+  border: 2px solid #555;
+  margin-bottom: 0.5em;
+}
+.carousel figcaption {
+  display: block;
+  width: 220px;         /* Set to match or slightly exceed your image width */
+  min-height: 2.5em;    /* Ensures enough height for one or two lines */
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  white-space: normal;  /* Allows wrapping if needed */
+}

@@ -46,25 +46,77 @@
                 I used aesprite because it is popular for making pixel art, animations, and sprite sheets.
               </p>
             </div>
-            <figure>
-              <img
-                src="img/player.png"
-                alt="example player image"
-                title="Lyla"
-                width="200"
-                height="200" />
-              <figcaption>Lyla</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="img/melody_idle_0.png"
-                alt="example player image"
-                title="Melody"
-                width="200"
-                height="200" />
-              <figcaption>Melody</figcaption>
-            </figure>
+
+            <div class="carousel" id="player-carousel">
+              <img id="player-image" src="img/player1.png" alt="Player animation" width="200" height="200" />
+              <div>
+                <button type="button" onclick="prevImage('player')">Prev</button>
+                <button type="button" onclick="nextImage('player')">Next</button>
+              </div>
+              <figcaption>animation of the player flying</figcaption>
             </div>
+
+            <div class="carousel" id="melody-carousel">
+              <img id="melody-image" src="img/melody_idle_0.png" alt="Melody animation" width="200" height="200" />
+              <div>
+                <button type="button" onclick="prevImage('melody')">Prev</button>
+                <button type="button" onclick="nextImage('melody')">Next</button>
+              </div>
+              <figcaption>animation of Melody idle</figcaption>
+            </div>
+            <script>
+              // Arrays of image filenames for each character
+              const playerImages = [
+                { src: "img/lyla_idle_0.png", caption: "Lyla idle" },
+                { src: "img/lyla_run_0.gif", caption: "Lyla walking" },
+                { src: "img/lyla_flying_0.gif", caption: "Lyla flying" }
+                // Add more frames as needed
+              ];
+              const melodyImages = [
+                { src: "img/melody_idle_0.png", caption: "Melody idle" },
+                { src: "img/melody_idle_0.png", caption: "Melody walking" },
+                { src: "img/melody_idle_0.png", caption: "Melody flying" }
+                // Add more frames as needed
+              ];
+
+              let playerIndex = 0;
+              let melodyIndex = 0;
+
+              function showImage(character) {
+                if (character === 'player') {
+                  document.getElementById('player-image').src = playerImages[playerIndex].src;
+                  document.querySelector('#player-carousel figcaption').textContent = playerImages[playerIndex].caption;
+                } else if (character === 'melody') {
+                  document.getElementById('melody-image').src = melodyImages[melodyIndex].src;
+                  document.querySelector('#melody-carousel figcaption').textContent = melodyImages[melodyIndex].caption;
+                }
+              }
+
+              function prevImage(character) {
+                if (character === 'player') {
+                  playerIndex = (playerIndex - 1 + playerImages.length) % playerImages.length;
+                  showImage('player');
+                } else if (character === 'melody') {
+                  melodyIndex = (melodyIndex - 1 + melodyImages.length) % melodyImages.length;
+                  showImage('melody');
+                }
+              }
+
+              function nextImage(character) {
+                if (character === 'player') {
+                  playerIndex = (playerIndex + 1) % playerImages.length;
+                  showImage('player');
+                } else if (character === 'melody') {
+                  melodyIndex = (melodyIndex + 1) % melodyImages.length;
+                  showImage('melody');
+                }
+              }
+              showImage('player');
+              showImage('melody');
+            </script>
+
+          </div>
+
           <h3>I made custom dialogue trees using json files.</h3>  
           <div id="dialogue-demo">
             <div id="dialogue-box"></div>

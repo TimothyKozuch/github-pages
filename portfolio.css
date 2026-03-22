@@ -1,133 +1,155 @@
-/* ═══════════════════════════════════════════════════
-   PORTFOLIO.CSS  –  Timothy Kozuch
-   Aesthetic: dark editorial + monospace tech accent
-═══════════════════════════════════════════════════ */
-
-/* ── Tokens ── */
+/* :root targets the <html> element so these are available everywhere. */
 :root {
-  --bg:          #0e0f13;
-  --surface:     #16181f;
-  --surface2:    #1e2028;
-  --border:      #2c2f3a;
-  --accent:      #c8ff57;      /* electric lime */
-  --accent2:     #57c8ff;      /* sky blue */
-  --text:        #e8eaf0;
-  --text-muted:  #7a7f94;
-  --font-display: 'Syne', sans-serif;
-  --font-mono:    'DM Mono', monospace;
-  --radius:       6px;
-  --transition:   .2s ease;
+  --bg:      #111;    /* the main dark background used for the whole page */
+  --surface: #222;    /* slightly lighter — used for cards, nav, dropdowns */
+  --accent:  #57c8ff; /* sky blue — links, highlights, active states */
+  --text:    white;   /* all body text */
+  --font: sans-serif;
 }
 
-/* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
+
+/* CSS RESET Removes browser default margins, padding, and the confusing
+   default box model.*/
+*, *::before, *::after {
+  box-sizing: border-box; /* padding and border are INCLUDED in width/height */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;       /* 1rem = 16px throughout the stylesheet */
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-mono);
+  font-family: var(--font);
   line-height: 1.6;
-  min-height: 100vh;
+  min-height: 100vh;     /* page background fills the full screen even when short */
 }
-a { color: var(--accent); text-decoration: none; transition: color var(--transition); }
-a:hover { color: var(--accent2); }
-ul { list-style: none; }
+
+/* Global link styles — sky blue, no underline by default */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline; /* underline on hover is a simple, clear feedback */
+}
+
+ul  { list-style: none; }
 img { display: block; max-width: 100%; }
-button { cursor: pointer; border: none; background: none; font: inherit; }
 
-/* ── Header ── */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(14,15,19,.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+/*
+  button reset — removes the browser's default gray background, border,
+  and font mismatch so all buttons inherit our styles cleanly.
+  cursor: pointer gives the hand-cursor on hover (expected by users).
+*/
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit; /* "inherit" copies the font-family/size from the parent element */
 }
 
+
+/* ───────────────────────────────────────────────────────────────────
+   HEADER
+   position: sticky keeps it visible at the top as the user scrolls.
+   ─────────────────────────────────────────────────────────────────── */
+.site-header {
+  position: sticky; /* sticks to top:0 once the user scrolls past it */
+  top: 0;
+  z-index: 100;     /* floats above page content when scrolled */
+  background: var(--bg);
+  border-bottom: 2px solid var(--accent); /* single accent line under the header */
+}
+
+/*
+  .header-inner centers content and caps width on wide monitors.
+  max-width + margin:0 auto is the classic CSS centering pattern.
+  display:flex puts avatar, name, and search bar side by side in one row.
+*/
 .header-inner {
   max-width: 1300px;
   margin: 0 auto;
   padding: 1rem 2rem;
   display: flex;
-  align-items: center;
+  align-items: center; /* vertically centers items in the row */
   gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap;     /* wraps to next line on narrow screens */
 }
 
-/* Identity */
 .header-identity {
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 1;
+  flex: 1;         /* takes up all available space, pushing search to the right */
   min-width: 200px;
 }
 
+/* Avatar circle — initials placeholder until you have a real photo */
 .avatar {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  border-radius: 50%;          /* 50% = circle */
   background: var(--accent);
-  color: #0e0f13;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.1rem;
+  color: var(--bg);            /* dark text on light blue for contrast */
+  font-weight: bold;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  /* swap with an <img> once you have a photo */
+  flex-shrink: 0;              /* don't let flex shrink this below 48px */
 }
 
 .site-title {
-  font-family: var(--font-display);
-  font-weight: 800;
   font-size: 1.25rem;
-  letter-spacing: -.5px;
-  line-height: 1.1;
+  font-weight: bold;
 }
 
 .site-subtitle {
-  font-size: .75rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent); /* subtitle in accent color to stand out slightly */
 }
 
-/* Search */
+/* ── Search bar ── */
 .header-search {
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 99px;
-  padding: .35rem .75rem;
+  padding: 0.35rem 0.75rem;
 }
 
 .header-search input {
   background: none;
   border: none;
-  outline: none;
+  outline: none;    /* removes the browser's default blue focus ring */
   color: var(--text);
   font: inherit;
-  font-size: .85rem;
+  font-size: 0.9rem;
   width: 200px;
 }
 
-.header-search input::placeholder { color: var(--text-muted); }
+.header-search input::placeholder {
+  color: grey; /* ::placeholder is a pseudo-element — targets ghost text in the input */
+}
 
 .header-search button {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  line-height: 1;
-  transition: color var(--transition);
+  font-size: 1.1rem;
+  color: var(--text);
 }
-.header-search button:hover { color: var(--accent); }
+.header-search button:hover {
+  color: var(--accent);
+}
 
-/* ── Primary nav ── */
+
+/* ───────────────────────────────────────────────────────────────────
+   PRIMARY NAVIGATION BAR (dropdown menus)
+   ─────────────────────────────────────────────────────────────────── */
 .primary-nav {
-  border-top: 1px solid var(--border);
   background: var(--surface);
 }
 
@@ -135,114 +157,133 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   max-width: 1300px;
   margin: 0 auto;
   padding: 0 2rem;
-  display: flex;
-  gap: 0;
+  display: flex; /* nav items in a horizontal row */
 }
 
-.nav-item { position: relative; }
+/*
+  position: relative here is CRITICAL.
+  The dropdown inside each item uses position:absolute, which positions
+  itself relative to the nearest ancestor with a non-static position.
+  Setting relative on .nav-item makes IT that anchor, so each dropdown
+  lines up directly under its own button (not the whole page).
+*/
+.nav-item {
+  position: relative;
+}
 
 .nav-btn {
   display: block;
-  padding: .75rem 1.25rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: .82rem;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  transition: color var(--transition), background var(--transition);
-  white-space: nowrap;
+  padding: 0.75rem 1.25rem;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase; /* CSS transforms the text visually, no HTML change */
+  color: var(--text);
+  white-space: nowrap; /* prevents "Technical Skills / Resume" from line-wrapping */
 }
 
 .nav-btn:hover,
 .nav-item.open .nav-btn {
-  color: var(--accent);
-  background: rgba(200, 255, 87, .06);
+  color: var(--accent); /* highlight the button when hovered OR when open */
 }
 
-/* Dropdown */
+/* ── Dropdown panel ── */
+/*
+  display: none = completely hidden and takes no space.
+  position: absolute = overlays the page content below the nav bar.
+  top: 100% = just below the bottom edge of the parent .nav-item.
+  z-index: 200 = above the header (z-index:100) and all page content.
+*/
 .dropdown {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   min-width: 220px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--accent);
-  border-radius: 0 0 var(--radius) var(--radius);
-  z-index: 200;
-  padding: .5rem 0;
-  animation: fadeDown .15s ease;
+  background: var(--surface);
+  border-top: 2px solid var(--accent); /* accent line at the top of each dropdown */
 }
 
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* JavaScript adds class "open" to .nav-item when its button is clicked */
+.nav-item.open .dropdown {
+  display: block; /* this single rule makes the dropdown visible */
 }
-
-.nav-item.open .dropdown { display: block; }
 
 .dropdown li a {
   display: flex;
   align-items: center;
-  gap: .75rem;
-  padding: .6rem 1.25rem;
-  font-size: .85rem;
+  gap: 0.75rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
   color: var(--text);
-  transition: background var(--transition), color var(--transition);
 }
 .dropdown li a:hover {
-  background: rgba(200, 255, 87, .07);
   color: var(--accent);
+  text-decoration: none; /* override the global a:hover underline inside menus */
 }
 
+/*
+  Language badge tag (e.g. "C", "Python").
+  margin-left: auto in a flex row pushes this element all the way
+  to the RIGHT side, regardless of how long the link text before it is.
+*/
 .tag {
-  font-size: .65rem;
-  padding: .15em .5em;
-  border-radius: 3px;
-  background: var(--border);
-  color: var(--text-muted);
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  flex-shrink: 0;
+  font-size: 0.7rem;
+  padding: 0.1em 0.4em;
+  background: var(--bg);
+  color: var(--accent);
   margin-left: auto;
+  flex-shrink: 0;
 }
 
-/* ── Carousel ── */
+
+/* ───────────────────────────────────────────────────────────────────
+   CAROUSEL
+   All slides are stacked (position:absolute) inside a fixed-height
+   container. Only the one with class "active" is visible (opacity:1).
+   The CSS transition on opacity creates the fade effect automatically.
+   ─────────────────────────────────────────────────────────────────── */
 .carousel-section {
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--accent);
 }
 
-.carousel-track { position: relative; height: 480px; }
+.carousel-track {
+  position: relative;
+  height: 480px;
+}
 
+/* All slides: stacked, invisible, non-interactive */
 .carousel-slide {
   position: absolute;
-  inset: 0;
+  inset: 0;     /* shorthand for top:0; right:0; bottom:0; left:0 */
   display: flex;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity .5s ease;
+  pointer-events: none; /* invisible slides can't accidentally catch clicks */
+  transition: opacity 0.5s; /* the only transition kept — carousel fade feels bad without it */
 }
 
+/* The visible slide */
 .carousel-slide.active {
   opacity: 1;
   pointer-events: auto;
 }
 
+/*
+  flex: 1 0 50% — the image takes up at least 50% of the slide width.
+  (flex-grow:1, flex-shrink:0, flex-basis:50%)
+*/
 .slide-img {
   flex: 1 0 50%;
   max-width: 55%;
-  position: relative;
   overflow: hidden;
 }
 
+/* Right half: text content */
 .slide-caption {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* stack tag label, h2, p, and link vertically */
   justify-content: center;
   padding: 3rem;
   gap: 1rem;
@@ -250,126 +291,115 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .slide-caption h2 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2.2rem;
-  line-height: 1.1;
-  letter-spacing: -.5px;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .slide-caption p {
-  color: var(--text-muted);
-  font-size: .9rem;
-  max-width: 38ch;
+  font-size: 0.9rem;
+  max-width: 38ch; /* ch = width of "0" in current font. ~38 chars per line max */
 }
 
 .slide-tag {
-  font-size: .72rem;
-  letter-spacing: .1em;
+  font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--accent);
-  font-family: var(--font-mono);
 }
 
+/* Ghost button (outlined, fills on hover) */
 .slide-link {
   display: inline-block;
-  margin-top: .5rem;
-  padding: .6rem 1.4rem;
+  padding: 0.6rem 1.4rem;
   border: 1px solid var(--accent);
-  border-radius: var(--radius);
   color: var(--accent);
-  font-size: .85rem;
-  font-family: var(--font-display);
-  font-weight: 700;
-  transition: background var(--transition), color var(--transition);
-  align-self: flex-start;
+  font-size: 0.9rem;
+  font-weight: bold;
+  align-self: flex-start; /* don't stretch to full column width */
 }
 .slide-link:hover {
   background: var(--accent);
-  color: #0e0f13;
+  color: var(--bg);
+  text-decoration: none;
 }
 
-/* Placeholder image blocks */
+/* Placeholder gradient blocks — remove once you have real screenshots */
 .placeholder-img {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .placeholder-label {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: rgba(255,255,255,.12);
-  letter-spacing: -.5px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.12); /* very faint ghosted text */
   text-align: center;
   padding: 1rem;
-  /* Remove this rule once you have real screenshots */
 }
 
-/* Carousel controls */
+/* ── Carousel controls ── */
 .carousel-controls {
   position: absolute;
-  bottom: 1.25rem;
+  bottom: 1rem;
   right: 2rem;
   display: flex;
   align-items: center;
-  gap: .75rem;
+  gap: 0.75rem;
   z-index: 10;
 }
 
 .carousel-btn {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: rgba(14,15,19,.7);
+  background: var(--surface);
   color: var(--text);
   font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color var(--transition), color var(--transition);
 }
 .carousel-btn:hover {
-  border-color: var(--accent);
   color: var(--accent);
 }
 
-.carousel-dots { display: flex; gap: .4rem; }
+.carousel-dots {
+  display: flex;
+  gap: 0.4rem;
+}
 
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  background: var(--border);
-  transition: background var(--transition), transform var(--transition);
+  background: grey;
 }
 .dot.active {
   background: var(--accent);
-  transform: scale(1.3);
 }
 
-/* ── Featured section ── */
+
+/* ───────────────────────────────────────────────────────────────────
+   FEATURED PROJECT SECTION
+   ─────────────────────────────────────────────────────────────────── */
 .featured-section {
   max-width: 1300px;
   margin: 0 auto;
   padding: 4rem 2rem;
-  position: relative;
 }
 
 .featured-label {
-  display: inline-block;
-  font-size: .72rem;
-  letter-spacing: .15em;
+  display: inline-block; /* shrinks to fit its text instead of full-width */
+  font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--accent);
-  font-family: var(--font-mono);
   border: 1px solid var(--accent);
-  border-radius: 3px;
-  padding: .2em .7em;
+  padding: 0.2em 0.6em;
   margin-bottom: 2rem;
 }
 
+/*
+  CSS Grid: two columns.
+  380px = fixed screenshot column. 1fr = all remaining space for text.
+  On screens < 900px the media query at the bottom collapses this to 1fr.
+*/
 .featured-inner {
   display: grid;
   grid-template-columns: 380px 1fr;
@@ -379,9 +409,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .featured-img {
   width: 100%;
-  aspect-ratio: 4/3;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
+  aspect-ratio: 4/3; /* keeps proportions correct before a real image is added */
   overflow: hidden;
 }
 
@@ -392,108 +420,105 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .featured-body h2 {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2.5rem;
-  letter-spacing: -.5px;
-  line-height: 1.1;
+  font-size: 2.2rem;
+  font-weight: bold;
 }
 
+/* > selects DIRECT children only — avoids styling <p> inside dialogue-demo */
 .featured-body > p {
-  color: var(--text-muted);
-  font-size: .9rem;
+  font-size: 0.9rem;
   max-width: 55ch;
 }
 
-/* Dialogue demo */
+
+/* ───────────────────────────────────────────────────────────────────
+   DIALOGUE DEMO WIDGET
+   ─────────────────────────────────────────────────────────────────── */
 .dialogue-demo {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent2);
-  border-radius: var(--radius);
+  border-left: 3px solid var(--accent); /* left-side accent stripe */
   padding: 1.25rem;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
 .demo-label {
-  font-size: .72rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: .1em;
-  color: var(--accent2);
-  margin-bottom: .75rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
 }
 
+/*
+  max-height + overflow-y: auto = scrollable when the conversation gets long.
+  "auto" shows the scrollbar only when content overflows (vs "scroll" always shows it).
+*/
 .dialogue-box {
   min-height: 80px;
   max-height: 180px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: .4rem;
-  margin-bottom: .75rem;
-  font-size: .85rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(--border) transparent;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
 }
 
-.dialogue-box strong { color: var(--accent2); }
-
-.player-choice { color: var(--text-muted); font-style: italic; }
-.end-line { color: var(--text-muted); font-size: .8rem; text-align: center; margin-top: .5rem; }
+.dialogue-box strong { color: var(--accent); }
+.player-choice { font-style: italic; }
+.end-line { font-size: 0.8rem; text-align: center; margin-top: 0.5rem; }
 
 .choices {
   display: flex;
   flex-direction: column;
-  gap: .4rem;
+  gap: 0.4rem;
 }
 
 .choice-btn {
   text-align: left;
-  padding: .5rem .85rem;
-  font-size: .82rem;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  background: var(--bg);
+  border: 1px solid var(--accent);
   color: var(--text);
-  transition: border-color var(--transition), color var(--transition);
 }
 .choice-btn:hover {
-  border-color: var(--accent2);
-  color: var(--accent2);
+  background: var(--accent);
+  color: var(--bg);
 }
 
 .restart-btn {
-  margin-top: .6rem;
-  font-size: .75rem;
-  color: var(--text-muted);
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--accent);
   text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color var(--transition);
 }
-.restart-btn:hover { color: var(--accent); }
 
-/* Primary CTA button */
+
+/* ───────────────────────────────────────────────────────────────────
+   PRIMARY CTA BUTTON
+   ─────────────────────────────────────────────────────────────────── */
+/* Solid filled button (as opposed to the ghost .slide-link above) */
 .btn-primary {
   display: inline-block;
-  padding: .75rem 2rem;
+  padding: 0.75rem 2rem;
   background: var(--accent);
-  color: #0e0f13;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: .9rem;
-  border-radius: var(--radius);
+  color: var(--bg);
+  font-weight: bold;
+  font-size: 0.9rem;
   align-self: flex-start;
-  transition: opacity var(--transition), transform var(--transition);
 }
 .btn-primary:hover {
-  opacity: .85;
-  transform: translateY(-1px);
-  color: #0e0f13;
+  opacity: 0.85;
+  text-decoration: none;
+  color: var(--bg);
 }
 
-/* ── Footer ── */
+
+/* ───────────────────────────────────────────────────────────────────
+   FOOTER
+   ─────────────────────────────────────────────────────────────────── */
 .site-footer {
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--accent);
   padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
@@ -506,43 +531,56 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .footer-link {
   display: flex;
   align-items: center;
-  gap: .5rem;
-  font-size: .85rem;
-  color: var(--text-muted);
-  transition: color var(--transition);
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
 }
-.footer-link:hover { color: var(--accent); }
+.footer-link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
 
+/*
+  margin-left: auto pushes the date to the far right of the flex row.
+  Auto margins in flexbox absorb all remaining space on that side.
+*/
 .footer-date {
   margin-left: auto;
-  font-size: .78rem;
-  color: var(--text-muted);
+  font-size: 0.8rem;
+  color: grey;
 }
 
 .icon {
   width: 18px;
   height: 18px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* prevent the SVG icon from squishing */
 }
 
-/* ── Responsive ── */
+
+/* ───────────────────────────────────────────────────────────────────
+   RESPONSIVE DESIGN (media queries)
+   These rules apply ONLY when the screen width is at or below the
+   stated pixel value. They override the rules above for small screens.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Tablets and smaller */
 @media (max-width: 900px) {
+  /* Stack carousel image on top of text instead of side-by-side */
   .carousel-slide { flex-direction: column; }
   .slide-img { max-width: 100%; height: 220px; flex: none; }
   .carousel-track { height: auto; min-height: 480px; }
 
-  .featured-inner {
-    grid-template-columns: 1fr;
-  }
-  .featured-img { max-width: 100%; }
+  /* Featured section collapses to a single column */
+  .featured-inner { grid-template-columns: 1fr; }
 
+  /* Shrink the search input a bit */
   .header-search input { width: 130px; }
 }
 
+/* Phones */
 @media (max-width: 600px) {
-  .header-inner { padding: .75rem 1rem; }
-  .nav-list { flex-direction: column; }
-  .primary-nav { display: none; } /* add a hamburger for mobile later */
+  .header-inner { padding: 0.75rem 1rem; }
+  .primary-nav { display: none; } /* TODO: replace with a hamburger menu button */
   .featured-section { padding: 2rem 1rem; }
   .site-footer { flex-direction: column; gap: 1rem; }
   .footer-date { margin-left: 0; }

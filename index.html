@@ -1,60 +1,284 @@
 <!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  WHAT IS <!DOCTYPE html>?                                           ║
+  ║  This is NOT an HTML tag — it is a "document type declaration."     ║
+  ║  It tells the browser: "parse this file as modern HTML5, not some  ║
+  ║  older dialect like HTML4 or XHTML."  Without it, browsers fall    ║
+  ║  into "quirks mode" and render things differently across browsers.  ║
+  ║  Always put this as the very first line of every HTML file.        ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+-->
+
+<!--
+  <html lang="en">
+  The root element — it wraps EVERYTHING on the page.
+  lang="en" tells screen readers and search engines the page is written
+  in English. Screen readers use this to choose the correct pronunciation
+  rules; search engines use it to serve language-specific results.
+  Always include this.
+-->
 <html lang="en">
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     <head> — THE INVISIBLE CONTROL ROOM
+     Everything inside <head> is metadata — information ABOUT the page,
+     not content that displays on screen. The browser reads this block
+     first, before it renders anything visible.
+     ═══════════════════════════════════════════════════════════════════ -->
 <head>
+
+  <!--
+    charset="UTF-8"
+    "Character set" — defines how text bytes on disk map to characters.
+    UTF-8 supports every character from every human language, plus emoji
+    and symbols like ©. Without it, accented characters or symbols can
+    look garbled. This MUST be the FIRST tag inside <head> so the browser
+    knows the encoding before it reads anything else.
+  -->
   <meta charset="UTF-8" />
+
+  <!--
+    VIEWPORT META TAG — the key to mobile-friendly pages
+    Without this, mobile browsers zoom out to show a shrunken desktop view.
+    With it, the page fills the physical screen width at 1:1 scale.
+
+      width=device-width  → page width = the physical screen width
+      initial-scale=1.0   → don't zoom in or out on first load
+
+    Once this tag is present, your CSS @media rules can kick in at the
+    right breakpoints to rearrange the layout for small screens.
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    METADATA for search engines and link-preview cards.
+    These don't change how the page looks, only how it's described to
+    Google, Bing, and social media sites (Twitter/Discord link previews).
+    description: keep under ~155 characters; Google truncates longer ones.
+  -->
   <meta name="author" content="Timothy Kozuch" />
   <meta name="description" content="Timothy Kozuch – CS student, game developer, and programmer." />
+
+  <!--
+    <title>
+    Text shown on the browser tab and in Google search results.
+    Different from any <h1> on the page — this is the OS-level label.
+  -->
   <title>Timothy Kozuch</title>
+
+  <!--
+    LOADING OUR CSS STYLESHEET
+    rel="stylesheet"     → tells the browser this linked file is CSS
+    href="portfolio.css" → relative path — both files are in the same folder,
+                           so just the filename works. If CSS were in a
+                           "styles/" subfolder you'd write "styles/portfolio.css"
+
+    The browser downloads and parses this BEFORE rendering, so the page
+    never shows an unstyled flash. Styles are applied from the start.
+  -->
   <link rel="stylesheet" href="portfolio.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <!--
+    No custom font loaded — the CSS uses the browser's built-in sans-serif,
+    which maps to Segoe UI (Windows), San Francisco (macOS/iOS), or Roboto
+    (Android). Zero network requests, instant rendering.
+  -->
+
 </head>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     <body> — EVERYTHING THE USER SEES AND INTERACTS WITH
+     The browser renders this top-to-bottom. The order of elements here
+     is the order they appear on screen (before CSS repositioning).
+     ═══════════════════════════════════════════════════════════════════ -->
 <body>
 
-  <!-- ═══════════════════════════════════════════
-       HEADER / NAV
-  ═══════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════════
+       SECTION 1: SITE HEADER
+       <header> is a SEMANTIC HTML5 element. Using it (instead of a
+       plain <div>) tells browsers, screen readers, and search engines
+       "this is the introductory/navigation zone of the page."
+       Screen readers expose it as a "banner" landmark that users can
+       jump to directly.
+
+       class="site-header" — connects this element to CSS rules that
+       begin with .site-header in portfolio.css.
+       ═══════════════════════════════════════════════════════════════ -->
   <header class="site-header">
+
+    <!--
+      .header-inner is a LAYOUT WRAPPER — a plain <div> whose only job
+      is to constrain its children to max-width:1300px and center them
+      with margin:0 auto. On a 4K monitor, content won't stretch
+      across the entire screen. <div> has no semantic meaning on its own;
+      use it purely for grouping/layout when no semantic tag fits.
+    -->
     <div class="header-inner">
 
-      <!-- Avatar placeholder + name -->
+      <!--
+        IDENTITY BLOCK (avatar circle + name/subtitle)
+        .header-identity uses CSS Flexbox (display:flex in portfolio.css)
+        to lay the avatar and text side-by-side horizontally.
+      -->
       <div class="header-identity">
+
+        <!--
+          Avatar circle — currently shows initials "TK" as text.
+          When you have a real photo, replace this entire <div> with:
+            <img src="img/your-photo.jpg"
+                 alt="Photo of Timothy Kozuch"
+                 class="avatar"
+                 width="48" height="48" />
+          and delete the "TK" text content.
+
+          aria-label
+          ───────────
+          WAI-ARIA accessibility attribute. Since this <div> has no
+          real image or link text, screen readers wouldn't know what it
+          represents. aria-label manually tells them: "Photo of Timothy Kozuch."
+          A sighted user sees "TK"; a blind user hears the aria-label.
+        -->
         <div class="avatar" aria-label="Photo of Timothy Kozuch">TK</div>
+
         <div>
+          <!--
+            <h1> is the single most important heading on the page.
+            There should be ONLY ONE <h1> per page. Search engines treat
+            it as the primary topic. Screen readers announce it prominently.
+            Heading levels must not skip: h1 → h2 → h3, never h1 → h3.
+          -->
           <h1 class="site-title">Timothy Kozuch</h1>
+
+          <!--
+            &amp; is an HTML ENTITY — a way to write special characters
+            the HTML parser would otherwise misinterpret.
+            &amp; = &    &lt; = <    &gt; = >    &copy; = ©    &nbsp; = non-breaking space
+            A raw & in HTML text would confuse the parser into thinking
+            you're starting another entity, so always escape it as &amp;
+          -->
           <p class="site-subtitle">CS Student &amp; Game Developer</p>
         </div>
-      </div>
 
-      <!-- Search bar -->
+      </div><!-- /.header-identity -->
+
+      <!--
+        SEARCH BAR
+        type="search" is a specialized input. Mobile keyboards show a
+        search/go button; many browsers add a built-in clear (×) button.
+
+        placeholder="…" — ghost text visible when the field is empty;
+        disappears when the user starts typing. Do NOT use placeholder
+        as a substitute for a visible <label> — it disappears and harms
+        accessibility. Here we compensate with aria-label.
+
+        aria-label="Search" — since there is no visible <label> paired
+        with this input, aria-label tells screen readers to announce
+        "Search" when the user focuses the field.
+
+        id="search-input" — unique identifier used by JavaScript:
+        document.getElementById('search-input') to read the typed value.
+        IDs must be unique per page; classes can repeat.
+      -->
       <div class="header-search">
         <input type="search" placeholder="Search projects…" aria-label="Search" id="search-input" />
+        <!--
+          type="button" prevents this button from accidentally submitting
+          a <form> if one existed. Always specify type on buttons.
+          onclick="handleSearch()" calls the JS function defined below.
+          The ⌕ character is a Unicode search symbol — purely decorative text.
+        -->
         <button type="button" onclick="handleSearch()" aria-label="Search">⌕</button>
       </div>
-    </div>
 
-    <!-- Primary nav with dropdowns -->
+    </div><!-- /.header-inner -->
+
+    <!--
+      PRIMARY NAVIGATION
+      <nav> is a semantic element for groups of navigation links.
+      aria-label="Primary navigation" names it so that when there are
+      multiple <nav> elements on a page (e.g. a footer nav too), screen
+      readers can distinguish them by name.
+
+      Building nav as a <ul> of <li> items is best practice:
+        - Semantic (a nav IS a list of links)
+        - Screen readers announce "list of N items" — useful context
+        - Keyboard users and search engines understand the structure
+    -->
     <nav class="primary-nav" aria-label="Primary navigation">
       <ul class="nav-list">
 
+        <!--
+          DROPDOWN MENU: Technical Skills / Resume
+          ──────────────────────────────────────────
+          Each top-level item is a <li> containing TWO children:
+            1. A <button> — the visible clickable label
+            2. A <ul class="dropdown"> — the hidden sub-menu
+
+          WHY a <button> and not an <a> link?
+          Because clicking it DOESN'T navigate anywhere — it opens a menu.
+          Use <a> for navigation, <button> for actions. This matters for
+          keyboard and screen reader users who expect these to behave differently.
+
+          aria-expanded="false"
+          ──────────────────────
+          Accessibility attribute — tells screen readers whether the
+          controlled dropdown is open ("true") or closed ("false").
+          JavaScript toggles this value on click. Screen readers announce
+          "collapsed" or "expanded" so keyboard-only users know the state.
+
+          aria-haspopup="true"
+          ─────────────────────
+          Tells screen readers: "this button controls a popup menu."
+          Users know to expect a dropdown before they even press it.
+        -->
         <li class="nav-item has-dropdown">
           <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
             Technical Skills / Resume ▾
+            <!-- ▾ is Unicode "down-pointing small triangle" — a visual hint
+                 that a dropdown will open. Purely decorative. -->
           </button>
+
+          <!--
+            THE DROPDOWN LIST
+            By default, .dropdown has display:none in CSS — completely hidden.
+            JavaScript adds class "open" to the parent <li> on click, and
+            the CSS rule  .nav-item.open .dropdown { display: block }
+            makes it appear. Removing "open" hides it again.
+
+            role="menu" + role="menuitem"
+            ──────────────────────────────
+            ARIA roles that describe this as a menu widget (like a desktop
+            application's File menu), not just a generic list. This lets
+            screen readers navigate it with arrow keys, announce "menu" etc.
+          -->
           <ul class="dropdown" role="menu">
             <li role="menuitem"><a href="about.html">About Me</a></li>
+            <!--
+              target="_blank" → opens in a new browser tab (for external
+              files like PDFs). rel="noopener" is a security best practice
+              for any target="_blank" link — it prevents the new tab from
+              accessing THIS page via the window.opener JavaScript API,
+              which is a known attack vector.
+            -->
             <li role="menuitem"><a href="resume.pdf" target="_blank">Resume (PDF)</a></li>
             <li role="menuitem"><a href="skills.html">Skills</a></li>
           </ul>
         </li>
 
+        <!-- DROPDOWN: Technical Projects -->
         <li class="nav-item has-dropdown">
           <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
             Technical Projects ▾
           </button>
           <ul class="dropdown" role="menu">
+            <!--
+              <span class="tag"> wraps the language badge inside each link.
+              <span> is an INLINE element with zero semantic meaning — use it
+              to style a small portion of text without adding block structure.
+              In CSS, .tag uses margin-left:auto inside a flex row to push
+              the badge to the right edge of the link, regardless of text length.
+            -->
             <li role="menuitem"><a href="projects/malloc.html">Malloc <span class="tag">C</span></a></li>
             <li role="menuitem"><a href="projects/cpu.html">CPU <span class="tag">Verilog</span></a></li>
             <li role="menuitem"><a href="projects/jbod.html">JBOD <span class="tag">C</span></a></li>
@@ -64,6 +288,7 @@
           </ul>
         </li>
 
+        <!-- DROPDOWN: Video Games -->
         <li class="nav-item has-dropdown">
           <button class="nav-btn" aria-expanded="false" aria-haspopup="true">
             Video Games ▾
@@ -75,30 +300,104 @@
           </ul>
         </li>
 
-      </ul>
-    </nav>
-  </header>
+      </ul><!-- /.nav-list -->
+    </nav><!-- /.primary-nav -->
 
+  </header><!-- /.site-header -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       <main> — THE PRIMARY PAGE CONTENT
+       Only ONE <main> element per page. It's a semantic landmark that
+       screen readers expose as "main" — users can skip directly to it
+       past the header/nav. Search engines weight its contents heavily.
+       ═══════════════════════════════════════════════════════════════ -->
   <main>
 
-    <!-- ═══════════════════════════════════════════
-         HERO CAROUSEL
-    ═══════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2: HERO CAROUSEL
+         <section> groups a thematic chunk of content. Use it when the
+         content could have its own heading. Use plain <div> for purely
+         layout/styling containers with no thematic meaning.
+
+         aria-label here names the region for screen readers so they
+         announce "Featured project carousel, region" rather than just
+         "region" — which would be confusing.
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="carousel-section" aria-label="Featured project carousel">
+
+      <!--
+        CAROUSEL TRACK — the fixed-height "stage"
+        In CSS: position:relative; height:480px
+        All slides are children of this and positioned ABSOLUTELY inside it,
+        layered on top of each other like a deck of cards.
+        Only the one with class "active" is visible (opacity:1);
+        all others are invisible (opacity:0). CSS animates the transition.
+      -->
       <div class="carousel-track" id="carousel-track">
 
+        <!--
+          CAROUSEL SLIDE 1 — One For Sorrow
+          The FIRST slide gets class "active" — visible on page load.
+          Others start without it, so they start invisible.
+
+          data-href="…"
+          ──────────────
+          A custom HTML5 data-* attribute. These let you attach arbitrary
+          data to any element without affecting appearance or default behavior.
+          You can read them in JavaScript via element.dataset.href
+          Here it stores the project URL in case we want to make the whole
+          slide clickable later — the hook is ready, just not wired yet.
+
+          Each slide has two children:
+            .slide-img     → left half: screenshot / placeholder color
+            .slide-caption → right half: title, description, link button
+        -->
         <div class="carousel-slide active" data-href="games/one-for-sorrow.html">
+
+          <!--
+            SLIDE IMAGE AREA — currently a gradient placeholder
+            style="background: linear-gradient(…)" is an INLINE style.
+            Inline styles override the CSS file and are normally discouraged
+            because they mix content and presentation. But each slide needs
+            its own UNIQUE color, and writing a separate CSS class for each
+            would be verbose. For one-off unique values, inline is acceptable.
+
+            linear-gradient(135deg, #1a1a2e, #16213e)
+            135deg = diagonal from top-left to bottom-right.
+            0deg = bottom to top, 90deg = left to right.
+
+            TO REPLACE WITH A REAL IMAGE:
+            Delete this whole div and replace with:
+              <img src="img/one-for-sorrow.png"
+                   alt="Screenshot of One For Sorrow gameplay"
+                   class="slide-img" />
+            Remove "placeholder-img" class and the style attribute.
+          -->
           <div class="slide-img placeholder-img" style="background: linear-gradient(135deg,#1a1a2e,#16213e);">
             <span class="placeholder-label">One For Sorrow</span>
           </div>
+
           <div class="slide-caption">
             <span class="slide-tag">Game · Python / Pygame</span>
+            <!--
+              <h2> — second-level heading. The <h1> on this page is your name
+              in the header, so project titles are <h2>. Heading levels create
+              a document outline; never skip levels (e.g. h1 → h3).
+            -->
             <h2>One For Sorrow</h2>
             <p>A 2-D narrative adventure with hand-crafted pixel art, custom dialogue trees, and controller support.</p>
+            <!--
+              An <a> tag styled to look like a button.
+              It IS a link (navigates to another page), so <a> is correct here —
+              not <button>. The .slide-link class in CSS gives it the bordered look.
+            -->
             <a href="games/one-for-sorrow.html" class="slide-link">View Project →</a>
           </div>
-        </div>
 
+        </div><!-- /.carousel-slide (slide 1) -->
+
+        <!-- SLIDE 2 — Malloc. No "active" class = starts hidden (opacity:0) -->
         <div class="carousel-slide" data-href="projects/malloc.html">
           <div class="slide-img placeholder-img" style="background: linear-gradient(135deg,#0d2137,#193d5a);">
             <span class="placeholder-label">Malloc</span>
@@ -111,6 +410,7 @@
           </div>
         </div>
 
+        <!-- SLIDE 3 — Loop-Hole -->
         <div class="carousel-slide" data-href="games/loop-hole.html">
           <div class="slide-img placeholder-img" style="background: linear-gradient(135deg,#1f0d37,#3b1a5a);">
             <span class="placeholder-label">Loop-Hole</span>
@@ -123,6 +423,7 @@
           </div>
         </div>
 
+        <!-- SLIDE 4 — CPU Design -->
         <div class="carousel-slide" data-href="projects/cpu.html">
           <div class="slide-img placeholder-img" style="background: linear-gradient(135deg,#0a2e1a,#0e4d2a);">
             <span class="placeholder-label">CPU Design</span>
@@ -137,23 +438,62 @@
 
       </div><!-- /.carousel-track -->
 
-      <!-- Controls -->
+      <!--
+        CAROUSEL CONTROLS: prev button | dots | next button
+        The dots <div> starts empty — JavaScript creates the dot buttons
+        dynamically (see "Build dots" in the script below).
+        Generating them in JS means adding a 5th slide auto-creates a 5th
+        dot — you don't have to manually add/remove dots in HTML.
+
+        aria-label on the ‹ and › buttons gives them a meaningful name
+        for screen readers (they'd otherwise announce the raw symbol names).
+      -->
       <div class="carousel-controls">
         <button class="carousel-btn" id="prev-btn" aria-label="Previous slide">‹</button>
         <div class="carousel-dots" id="carousel-dots"></div>
         <button class="carousel-btn" id="next-btn" aria-label="Next slide">›</button>
       </div>
-    </section>
 
-    <!-- ═══════════════════════════════════════════
-         FEATURED / LATEST PROJECT
-    ═══════════════════════════════════════════ -->
+    </section><!-- /.carousel-section -->
+
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3: FEATURED / LATEST PROJECT
+         This is the "most recent / most impressive project" block from
+         Sketch 1. Always shows One For Sorrow. When you ship something
+         bigger, update this section manually.
+         ═══════════════════════════════════════════════════════════════ -->
     <section class="featured-section" aria-label="Most recent project">
+
+      <!--
+        "Latest & Greatest" label badge.
+        &amp; is the HTML entity for the & character. You MUST escape it
+        in HTML text — a raw & would confuse the parser into thinking
+        you're starting an entity (like &amp; itself). Always escape: & → &amp;
+      -->
       <div class="featured-label">Latest &amp; Greatest</div>
+
+      <!--
+        .featured-inner uses CSS GRID (display:grid) with two columns:
+          380px — fixed width for the screenshot
+          1fr   — "one fraction unit" = takes all remaining space
+
+        Grid is ideal for 2D layouts (rows AND columns). Flexbox (used
+        elsewhere) is better for 1D layouts (just a row OR just a column).
+        On screens narrower than 900px, the media query in CSS collapses
+        this to a single column so text appears below the image.
+      -->
       <div class="featured-inner">
+
+        <!--
+          Screenshot placeholder. Same concept as in the carousel slides.
+          aspect-ratio: 4/3 in CSS keeps the box properly proportioned
+          even before a real screenshot is dropped in.
+        -->
         <div class="featured-img placeholder-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
           <span class="placeholder-label">One For Sorrow</span>
         </div>
+
         <div class="featured-body">
           <span class="slide-tag">Game · Python / Pygame</span>
           <h2>One For Sorrow</h2>
@@ -162,24 +502,87 @@
             It features fully hand-drawn pixel art created in Aseprite, a JSON-driven branching dialogue system,
             unique movement mechanics, and full controller support.
           </p>
-          <!-- Interactive dialogue demo preserved from original site -->
+
+          <!--
+            ══════════════════════════════════════════════
+            INTERACTIVE DIALOGUE DEMO
+            ══════════════════════════════════════════════
+            A live, playable excerpt of the game's dialogue system,
+            embedded right on the portfolio page. Visitors can interact
+            with your project without downloading or compiling anything.
+
+            This HTML is just the SHELL — empty containers:
+              #dialogue-box  → history of lines spoken so far
+              #choices       → current player-choice buttons
+              #restart-dialogue → resets to the beginning
+
+            JavaScript (at the bottom of this file) fills these in
+            dynamically. The HTML provides structure; JS provides behavior.
+            CSS (portfolio.css) provides appearance. These three layers
+            are intentionally separated — a core web development principle.
+          -->
           <div class="dialogue-demo" id="dialogue-demo">
             <p class="demo-label">▶ Try the dialogue system</p>
             <div id="dialogue-box" class="dialogue-box"></div>
+            <!--
+              Starts empty. JS creates <button> elements and inserts them
+              here with appendChild(). This pattern — creating DOM nodes
+              in JavaScript and adding them to the page — is called
+              "dynamic DOM manipulation."
+            -->
             <div id="choices" class="choices"></div>
             <button id="restart-dialogue" class="restart-btn">↺ Restart</button>
           </div>
+
+          <!--
+            Call-to-action styled as a solid button, but it's an <a> tag
+            because it navigates to another page. Rule of thumb:
+              <a>      → navigates somewhere (has an href)
+              <button> → triggers an action on the current page
+            The .btn-primary CSS class gives it the filled green look.
+          -->
           <a href="games/one-for-sorrow.html" class="btn-primary">Full Project Page →</a>
-        </div>
-      </div>
-    </section>
+        </div><!-- /.featured-body -->
+
+      </div><!-- /.featured-inner -->
+    </section><!-- /.featured-section -->
 
   </main>
 
-  <!-- ═══════════════════════════════════════════
-       FOOTER
-  ═══════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SITE FOOTER
+       <footer> is a semantic element for page-level metadata, secondary
+       links, and credits. Screen readers expose it as a "contentinfo"
+       landmark. There should only be one per page.
+       ═══════════════════════════════════════════════════════════════ -->
   <footer class="site-footer">
+
+    <!--
+      GITHUB LINK with inline SVG icon
+      target="_blank"  → open in a new tab (it's an external site)
+      rel="noopener"   → security: prevents the new tab from reaching
+                         back into this page via window.opener (a known
+                         XSS vector for any target="_blank" link)
+
+      SVG (Scalable Vector Graphics) is an XML-based image format defined
+      entirely in code — no pixels, just math. It scales perfectly at any
+      size (unlike a .png). The <path d="…"> element draws the GitHub
+      cat-octocat logo as a series of vector curves. You don't need to
+      understand every coordinate; just know SVG paths are like a list of
+      "move to, draw curve to, draw line to" instructions.
+
+      viewBox="0 0 24 24" defines the internal coordinate system:
+      a 24×24 unit grid regardless of the rendered pixel size.
+
+      fill="currentColor" — an SVG trick: instead of a hardcoded hex
+      color, the SVG inherits the text color of its parent element. So
+      when CSS changes .footer-link color on hover, the icon follows.
+
+      aria-hidden="true" — tells screen readers to skip the icon entirely.
+      The link's text "GitHub" already says where it goes; announcing
+      "image" too would be redundant noise.
+    -->
     <a href="https://github.com/TimothyKozuch" target="_blank" rel="noopener" class="footer-link">
       <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483
@@ -193,33 +596,150 @@
       </svg>
       GitHub
     </a>
-    <a href="mailto:random@email.com" class="footer-link">
+
+    <!--
+      EMAIL LINK
+      href="mailto:…" is a special URL scheme. Clicking it opens the
+      user's default email client pre-addressed to you. Replace the
+      address here with your actual email before publishing.
+
+      This envelope SVG uses:
+        fill="none"              → no fill color (transparent interior)
+        stroke="currentColor"    → outline color inherits from CSS text color
+        stroke-width="2"         → outline thickness in SVG units
+        <rect rx="2">            → rectangle with 2-unit rounded corners
+        <polyline points="…">    → the V-shaped fold at the top
+    -->
+    <a href="/cdn-cgi/l/email-protection#cab8aba4aea5a78aafa7aba3a6e4a9a5a7" class="footer-link">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
         <polyline points="2,4 12,13 22,4"/>
       </svg>
       Email Me
     </a>
+
+    <!--
+      LAST UPDATED DATE
+      <time> is a semantic HTML5 element for machine-readable dates.
+      It helps search engines and browser features parse dates correctly.
+      The element starts empty — JavaScript fills it in at load time
+      using new Date() so it always shows today's date automatically.
+    -->
     <span class="footer-date">Last updated: <time id="last-updated"></time></span>
+
   </footer>
 
-  <script>
-    /* ── Dropdown menus ── */
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       JAVASCRIPT — placed at the BOTTOM of <body>, not in <head>
+
+       WHY HERE AND NOT IN <head>?
+       The browser parses HTML top-to-bottom. A <script> in <head>
+       would pause HTML parsing, download+run the script, then resume.
+       At that moment, none of the HTML elements (buttons, divs, etc.)
+       exist yet, so getElementById() calls would return null and crash.
+
+       By placing <script> at the end of <body>, ALL HTML has already
+       been parsed and all elements exist in memory before any JS runs.
+       This is the classic solution; the modern alternative is to use
+       the "defer" attribute on a <script src="…"> tag in <head>:
+         <script src="app.js" defer></script>
+       defer tells the browser "download this in the background, but
+       don't run it until the HTML is fully parsed." Same result.
+       ═══════════════════════════════════════════════════════════════ -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+    /* ══════════════════════════════════════════════════════════════
+       PART 1: DROPDOWN MENUS
+       Goal: click a nav button → open its dropdown.
+             click again → close it.
+             click outside the nav → close all dropdowns.
+       ══════════════════════════════════════════════════════════════ */
+
+    /*
+      document.querySelectorAll('.nav-btn')
+      Returns a NodeList (like an array) of ALL elements matching the
+      CSS selector '.nav-btn'. The selector syntax is identical to CSS.
+
+      Contrast with getElementById() which finds ONE element by its
+      unique ID. Use querySelectorAll for groups of elements.
+
+      .forEach() iterates over every matched element. The arrow function
+      (btn => { … }) runs once per button, with btn being the current one.
+
+      Arrow function syntax:
+        (param) => { body }   ←→   function(param) { body }
+      Both mean the same thing; arrows are shorter and are standard in
+      modern JavaScript.
+    */
     document.querySelectorAll('.nav-btn').forEach(btn => {
+
+      /*
+        addEventListener(eventType, callbackFunction)
+        Registers a function to call when the event fires on this element.
+        'click' fires on mouse click or keyboard Enter/Space on a button.
+
+        Better than the HTML onclick="…" attribute because:
+          1. Separates behavior (JS) from structure (HTML) — cleaner code
+          2. You can attach multiple listeners to the same element
+          3. Easier to remove with removeEventListener() if needed
+      */
       btn.addEventListener('click', () => {
+
+        /*
+          getAttribute returns the CURRENT value of an HTML attribute
+          as a STRING — never as a boolean true/false. So we must
+          compare with === 'true' (string), not === true (boolean).
+          This reads whether THIS specific button's dropdown is currently open.
+        */
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
-        // close all others first
+
+        /*
+          Close ALL dropdowns first by looping over every nav button.
+          For each button b:
+            setAttribute('aria-expanded', 'false') → update accessibility state
+            b.parentElement → gets the <li> wrapping the button
+            classList.remove('open') → removes the 'open' class from the <li>
+
+          In CSS: .nav-item.open .dropdown { display: block }
+          So removing 'open' collapses the dropdown back to display:none.
+
+          classList API:
+            .add('name')     → adds a class
+            .remove('name')  → removes a class
+            .toggle('name')  → adds if absent, removes if present
+            .contains('name') → returns true/false
+        */
         document.querySelectorAll('.nav-btn').forEach(b => {
           b.setAttribute('aria-expanded', 'false');
           b.parentElement.classList.remove('open');
         });
+
+        /*
+          If this button's dropdown was NOT open when clicked, open it now.
+          (If it WAS open, we already closed it above — clicking an open
+          dropdown should close it. This is standard UX accordion behavior.)
+        */
         if (!isOpen) {
           btn.setAttribute('aria-expanded', 'true');
           btn.parentElement.classList.add('open');
         }
       });
     });
-    // Close on outside click
+
+    /*
+      CLOSE ON OUTSIDE CLICK
+      Listen for clicks on the entire document. If the click target is
+      NOT inside a .nav-item element, close all dropdowns.
+
+      e.target → the exact element the user clicked (could be a nested child)
+      .closest('.nav-item') → walks UP the DOM tree from e.target, looking
+        for an ancestor that matches the CSS selector. Returns that ancestor,
+        or null if none found.
+
+      So: !e.target.closest('.nav-item') means "the click was not inside
+      any element with class nav-item" → user clicked outside the nav.
+    */
     document.addEventListener('click', e => {
       if (!e.target.closest('.nav-item')) {
         document.querySelectorAll('.nav-btn').forEach(b => {
@@ -229,44 +749,170 @@
       }
     });
 
-    /* ── Carousel ── */
+
+    /* ══════════════════════════════════════════════════════════════
+       PART 2: CAROUSEL
+       How it works visually:
+         All slides are stacked on top of each other with position:absolute.
+         Only the "active" slide has opacity:1 (visible).
+         All others have opacity:0 (invisible, but still in the DOM).
+         CSS transition: opacity .5s ease; creates the smooth crossfade.
+
+       This is a "fade carousel." A "slide carousel" would instead
+       animate translateX to move panels horizontally — more complex.
+       ══════════════════════════════════════════════════════════════ */
+
+    /*
+      Grab all slide elements and the dots container once and store them.
+      Re-querying the DOM on every operation would work but is slower;
+      storing references in variables is a performance best practice.
+
+      const vs let:
+        const → value is assigned once and never reassigned
+        let   → value can be reassigned later
+      slides and dotsContainer never change, so use const.
+      current and autoTimer change as the carousel runs, so use let.
+    */
     const slides = document.querySelectorAll('.carousel-slide');
     const dotsContainer = document.getElementById('carousel-dots');
-    let current = 0;
-    let autoTimer;
+    let current = 0;    /* index of the currently visible slide (0-based) */
+    let autoTimer;      /* reference to the interval timer for auto-advance */
 
-    // Build dots
+
+    /*
+      BUILD DOT INDICATORS — dynamically, not hardcoded in HTML
+      slides.forEach((_, i) → _ means "I don't need the element itself,
+      just the index i." Using _ is a JS convention for "unused parameter."
+
+      If you hardcoded dots in HTML, adding a 5th slide would require
+      also adding a 5th dot manually. Generating them in JS keeps the
+      two in sync automatically.
+    */
     slides.forEach((_, i) => {
+
+      /* createElement creates a new element IN MEMORY — not yet on the page */
       const dot = document.createElement('button');
+
+      /*
+        TERNARY OPERATOR: condition ? valueIfTrue : valueIfFalse
+        Equivalent to:
+          if (i === 0) { dot.className = 'dot active'; }
+          else         { dot.className = 'dot'; }
+        The first dot starts highlighted (active); others don't.
+      */
       dot.className = 'dot' + (i === 0 ? ' active' : '');
+
+      /*
+        TEMPLATE LITERAL — backtick string with embedded expressions:
+          `Go to slide ${i + 1}`
+        The ${} embeds any JS expression into the string. i starts at 0
+        but humans count from 1, so we display i+1.
+        Equivalent (but messier): 'Go to slide ' + (i + 1)
+      */
       dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+
+      /*
+        CLOSURE — the arrow function () => goTo(i) "closes over" the
+        variable i, capturing its value at the moment this forEach
+        iteration ran. Even after the loop finishes, each dot's click
+        handler remembers its own i value.
+        Without closures, all dots would call goTo(4) — the final i value.
+      */
       dot.addEventListener('click', () => goTo(i));
+
+      /* appendChild adds the dot to the live DOM, making it visible */
       dotsContainer.appendChild(dot);
     });
 
+
+    /*
+      goTo(n) — the central carousel function
+      Transitions from the current slide to slide number n.
+    */
     function goTo(n) {
+      /* Step 1: hide current slide and un-highlight its dot */
       slides[current].classList.remove('active');
+      /* dotsContainer.children is like an array — index with [i] */
       dotsContainer.children[current].classList.remove('active');
+
+      /*
+        Step 2: compute new index with WRAP-AROUND using the modulo operator (%)
+        % gives the remainder after integer division.
+
+        (n + slides.length) % slides.length handles edge cases:
+          Going backward from slide 0:  n = -1
+            (-1 + 4) % 4 = 3  → wraps to the last slide ✓
+          Going forward past the last:  n = 4 (when there are 4 slides, 0-3)
+            4 % 4 = 0  → wraps to the first slide ✓
+
+        Without modulo, slides[-1] and slides[4] would be undefined → crash.
+      */
       current = (n + slides.length) % slides.length;
+
+      /* Step 3: show the new slide and highlight its dot */
       slides[current].classList.add('active');
       dotsContainer.children[current].classList.add('active');
+
+      /* Step 4: reset the auto-advance timer so the next auto-advance
+         is a full 5 seconds away (not < 5 if user just interacted) */
       resetAuto();
     }
 
+
+    /*
+      resetAuto() — restart the 5-second auto-advance timer
+      Always called after any navigation so manual clicks don't cause
+      an immediate auto-advance right after.
+
+      clearInterval(id) → cancels an existing interval (does nothing if id
+        is undefined, so calling this on first run is safe)
+      setInterval(fn, ms) → calls fn every ms milliseconds, returns a timer ID
+        We store the ID in autoTimer so we can cancel it next time.
+        () => goTo(current + 1) advances to the next slide each tick.
+    */
     function resetAuto() {
       clearInterval(autoTimer);
       autoTimer = setInterval(() => goTo(current + 1), 5000);
     }
 
+    /* Wire up the arrow buttons — just calls goTo with ±1 offset */
     document.getElementById('prev-btn').addEventListener('click', () => goTo(current - 1));
     document.getElementById('next-btn').addEventListener('click', () => goTo(current + 1));
+
+    /* Kick off the auto-advance immediately on page load */
     resetAuto();
 
-    /* ── Dialogue demo ── */
+
+    /* ══════════════════════════════════════════════════════════════
+       PART 3: DIALOGUE DEMO
+       Simulates the game's branching dialogue using a JavaScript
+       OBJECT as a lookup table. Each key is a node name; each value
+       is the node's data (speaker line + array of choices).
+
+       This mirrors real game dialogue systems — your game likely stores
+       dialogue in JSON files. JSON (JavaScript Object Notation) is
+       essentially JS object syntax saved as a plain text file.
+       ══════════════════════════════════════════════════════════════ */
+
+    /*
+      JAVASCRIPT OBJECT (key: value pairs)
+      Syntax: { key: value, key: value }
+      Values can be any type: string, array, number, or another object.
+
+      Access by key: dialogue['start'] or dialogue.start (both work).
+      When the key is stored in a VARIABLE, you MUST use brackets:
+        dialogue[nodeKey]  ← correct (uses the variable's value)
+        dialogue.nodeKey   ← wrong (looks for a key literally named "nodeKey")
+    */
     const dialogue = {
       start: {
         speaker: "Lyla",
         text: "The night is so empty and quiet, it's …",
+        /*
+          ARRAY of choice objects: [ {…}, {…} ]
+          Arrays use [] and hold an ordered list of values.
+          Each choice: { text: "what the button says", next: "nodeKey to go to" }
+        */
         choices: [
           { text: "Terrifying (scared of the dark, honest)", next: "Peaceful" },
           { text: "Nothing to be afraid of (brave face, liar)", next: "Peaceful" }
@@ -290,22 +936,67 @@
       Never_scared_end: {
         speaker: "Lyla",
         text: "I'm never scared with you around.",
-        choices: []
+        choices: []  /* empty array = terminal node, conversation ends here */
       }
     };
 
+
+    /*
+      appendDialogue(nodeKey)
+      Looks up the node, appends the speaker's line to the history,
+      then generates clickable buttons for each choice.
+      Called recursively: clicking a choice calls appendDialogue again
+      with the next node's key.
+    */
     function appendDialogue(nodeKey) {
-      const node = dialogue[nodeKey];
+      const node = dialogue[nodeKey];  /* bracket notation: key from a variable */
       const box = document.getElementById('dialogue-box');
+
+      /*
+        createElement + innerHTML + appendChild
+        This three-step pattern creates and places new DOM content:
+          1. createElement('p')     → makes <p> in memory
+          2. p.innerHTML = '…'      → sets its HTML content
+          3. box.appendChild(p)     → inserts it into the page
+
+        innerHTML vs textContent:
+          innerHTML   → parses HTML tags inside the string, renders them
+          textContent → treats everything as literal text, no tag rendering
+        Use innerHTML when you need tags (like <strong>); use textContent
+        for plain text. NEVER use innerHTML with raw user input — that
+        would be a cross-site scripting (XSS) security vulnerability.
+        Here we only inject our own data, so it's safe.
+      */
       const p = document.createElement('p');
       p.innerHTML = `<strong>${node.speaker}:</strong> ${node.text}`;
       box.appendChild(p);
+
+      /*
+        Clear the choices container before adding new buttons.
+        Setting innerHTML = '' deletes all child elements — it's the
+        quickest way to empty a container. The alternative is a loop
+        calling removeChild() on each child one-by-one.
+      */
       const choicesDiv = document.getElementById('choices');
       choicesDiv.innerHTML = '';
+
+      /* Build a button for each choice using forEach */
       node.choices.forEach(choice => {
         const btn = document.createElement('button');
         btn.className = 'choice-btn';
-        btn.textContent = choice.text;
+        btn.textContent = choice.text;  /* plain text, no HTML tags needed */
+
+        /*
+          btn.onclick = () => { … }  assigns a function to the onclick property.
+          Functionally the same as addEventListener('click', …).
+          Here we use the onclick property for brevity in a simple one-off handler.
+
+          The function is an arrow function that:
+            1. Appends the player's choice to the history
+            2. Calls appendDialogue with the next node (RECURSION)
+               Recursion = a function calling itself. It continues until
+               a node with choices:[] is reached, which ends the chain.
+        */
         btn.onclick = () => {
           const userP = document.createElement('p');
           userP.className = 'player-choice';
@@ -313,38 +1004,91 @@
           box.appendChild(userP);
           appendDialogue(choice.next);
         };
+
         choicesDiv.appendChild(btn);
       });
+
+      /* If no choices remain, show the end-of-scene message */
       if (node.choices.length === 0) {
         const end = document.createElement('p');
         end.className = 'end-line';
         end.textContent = '— End of scene —';
         box.appendChild(end);
       }
+
+      /*
+        Auto-scroll the dialogue box to the latest content.
+        scrollHeight = total scrollable height of the element.
+        scrollTop    = current scroll position from the top.
+        Setting scrollTop = scrollHeight jumps to the bottom, just like
+        a chat app that always shows the newest message.
+      */
       box.scrollTop = box.scrollHeight;
     }
 
+
+    /*
+      restartDialogue() — reset and start over from the "start" node.
+      Called once on page load and whenever the ↺ button is clicked.
+    */
     function restartDialogue() {
       document.getElementById('dialogue-box').innerHTML = '';
       document.getElementById('choices').innerHTML = '';
-      appendDialogue('start');
+      appendDialogue('start');  /* begin from the first node */
     }
-    restartDialogue();
+
+    restartDialogue();  /* run immediately when the page loads */
     document.getElementById('restart-dialogue').addEventListener('click', restartDialogue);
 
-    /* ── Search (basic demo) ── */
+
+    /* ══════════════════════════════════════════════════════════════
+       PART 4: SEARCH BAR
+       Currently a stub — shows an alert to demonstrate the concept.
+       To make it real: build a JSON array of your projects and filter
+       it client-side (client = the browser, no server needed), or use
+       a JavaScript search library like Lunr.js or Fuse.js.
+       ══════════════════════════════════════════════════════════════ */
+
     function handleSearch() {
+      /*
+        .value reads the string currently typed in the input.
+        .trim() removes leading/trailing whitespace so a query of "   "
+        (only spaces) doesn't trigger the alert.
+        if (q) → empty string "" is FALSY in JavaScript, so this only
+        runs if there's at least one non-whitespace character.
+      */
       const q = document.getElementById('search-input').value.trim();
       if (q) alert(`Search for "${q}" — connect to your projects index to implement this!`);
     }
+
+    /*
+      Also trigger on Enter key so users don't have to click the icon.
+      e.key gives the name of the key: 'Enter', 'Escape', 'ArrowUp', etc.
+      This is the modern replacement for the older e.keyCode numbers.
+    */
     document.getElementById('search-input').addEventListener('keydown', e => {
       if (e.key === 'Enter') handleSearch();
     });
 
-    /* ── Footer date ── */
-    document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
-  </script>
-</body>
-</html>
+
+    /* ══════════════════════════════════════════════════════════════
+       PART 5: AUTO-UPDATING FOOTER DATE
+       Reads the current system date and writes it into the <time> element.
+       Runs once at page load — no ongoing timer needed.
+       ══════════════════════════════════════════════════════════════ */
+
+    /*
+      new Date() — creates a Date object representing the current moment.
+      .toLocaleDateString('en-US', options) — formats it as a readable string.
+
+      Options:
+        year: 'numeric'  → "2026"     (vs 'numeric' would give '26' with '2-digit')
+        month: 'long'    → "March"    (vs 'short' = "Mar", 'numeric' = "3")
+        day: 'numeric'   → "22"
+
+      Result example: "March 22, 2026"
+
+      We set .textContent (not .innerHTML) because this is plain text — no
+      HTML tags needed, and textContent is slightly safer for plain strings.
+    */
+    document.getElementById('last-updated')

@@ -2,102 +2,137 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timothy Kozuch</title>
     <link rel="stylesheet" href="shared.css" />
     <style>
-      /* ── Header ── */
       header {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1rem;
         padding: 0.75rem 2rem;
-        background: #222;
-        border-bottom: 2px solid #57c8ff;
-        flex-wrap: wrap;
+        background: black;
       }
-      header img { width: 150px; height: 104px; object-fit: cover; flex-shrink: 0; }
-      header h1  { font-size: 1.3rem; white-space: nowrap; }
+      header img {
+        width: 150px;
+        height: 104px;
+        object-fit: cover;
+      }
 
-      /* ── Nav dropdowns ── */
-      nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
-      .menu { position: relative; }
-      .menu > button { padding: 0.5rem 1rem; background: #333; white-space: nowrap; }
-      .menu > button:hover, .menu.open > button { color: #57c8ff; }
+      nav {
+        display: flex;
+        gap: 0.25rem;
+        margin-left: 1rem;
+      }
+      .menu {
+        position: relative;
+      }
+      .menu > button {
+        padding: 0.5rem 1rem;
+        background: #444;
+      }
       .menu ul {
-        display: none; position: absolute; top: 100%; left: 0;
-        min-width: 200px; background: #222; border-top: 2px solid #57c8ff;
-        z-index: 100; padding: 0.5rem 0;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 180px;
+        background: #444;
+        z-index: 1;
       }
-      .menu.open ul { display: block; }
-      .menu ul li.group-label { padding: 0.4rem 1rem 0.1rem; font-size: 0.7rem; text-transform: uppercase; color: #57c8ff; }
-      .menu ul li a { display: block; padding: 0.4rem 1.25rem; color: white; }
-      .menu ul li a:hover { color: #57c8ff; text-decoration: none; background: #333; }
+      .menu.open ul {
+        display: block;
+      }
+      .group-label {
+        padding: 0.4rem 1rem 0.1rem;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+      }
+      .menu ul a {
+        display: block;
+        padding: 0.35rem 1rem;
+        color: white;
+      }
 
-      /* ── Carousel ── */
-      .carousel { position: relative; overflow: hidden; width: 100%; }
-      .track    { display: flex; transition: transform 0.4s ease; }
-      .slide    { min-width: 100%; display: flex; align-items: center; justify-content: center; gap: 2rem; padding: 2rem; background: #222; }
-      .slide img        { width: 260px; height: 180px; object-fit: cover; flex-shrink: 0; }
-      .slide .placeholder { width: 260px; height: 180px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: #777; flex-shrink: 0; }
-      .slide-text h2    { font-size: 1.4rem; margin-bottom: 0.5rem; }
-      .slide-text p     { font-size: 0.9rem; color: #ccc; max-width: 40ch; }
-      .slide-text a     { display: inline-block; margin-top: 0.75rem; }
-      .carousel button.prev, .carousel button.next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); font-size: 1.5rem; padding: 0.5rem 0.75rem; z-index: 10; }
-      .carousel button.prev { left: 0; }
-      .carousel button.next { right: 0; }
-      .dots { display: flex; justify-content: center; gap: 0.4rem; padding: 0.75rem; background: #222; }
-      .dots button { width: 10px; height: 10px; background: #555; padding: 0; }
-      .dots button.active { background: #57c8ff; }
+      .carousel {
+        background: #444;
+        padding: 4rem 10rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .carousel > button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 8rem;
+        padding: 0 1rem;
+        background: none;
+      }
+      .carousel > button:first-child {
+        left: 0;
+      }
+      .carousel > button:last-child {
+        right: 0;
+      }
+      .info {
+        display: flex;
+        gap: 4rem;
+        align-items: center;
+      }
+      .thumb {
+        width: 480px;
+        height: 320px;
+        background: black;
+        flex-shrink: 0;
+      }
+      .text h2 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+      }
+      .text p {
+        font-size: 1.2rem;
+      }
+      .text a {
+        display: block;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
     </style>
   </head>
   <body>
-    <!-- ══════════════════════════════
-     HEADER
-     Replace "profile.jpg" with your actual photo filename.
-     If you don't have a photo yet, delete the <img> tag — the layout
-     will still work.
-     ══════════════════════════════ -->
     <header>
-      <img src="img/logo.png" alt="Photo of Timothy Kozuch" />
+      <img src="img/logo.png" alt="Timothy Kozuch" />
       <h1>Timothy Kozuch</h1>
-
       <nav>
-        <!-- DROPDOWN 1: Technical Skills / Resume -->
         <div class="menu">
           <button>Technical Skills / Resume ▾</button>
           <ul>
             <li><a href="me/about.html">About Me</a></li>
             <li>
-              <a href="me/T.Kozuch_CS_PSU_Spring2026.pdf">Resume (PDF)</a>
+              <a href="me/T_Kozuch_CS_PSU_Spring2026.pdf">Resume (PDF)</a>
             </li>
             <li><a href="me/skills.html">Skills</a></li>
           </ul>
         </div>
 
-        <!-- DROPDOWN 2: Technical Projects (grouped by language) -->
         <div class="menu">
           <button>Technical Projects ▾</button>
           <ul>
             <li class="group-label">C</li>
             <li><a href="projects/malloc.html">Malloc</a></li>
             <li><a href="projects/jbod.html">JBOD</a></li>
-
             <li class="group-label">Python</li>
             <li><a href="projects/rsa.html">RSA</a></li>
-
             <li class="group-label">Java</li>
             <li><a href="projects/scheduler.html">Course Scheduler</a></li>
-
             <li class="group-label">VBA</li>
             <li><a href="projects/excel.html">Excel Automation</a></li>
-
             <li class="group-label">Verilog</li>
             <li><a href="projects/cpu.html">CPU</a></li>
           </ul>
         </div>
 
-        <!-- DROPDOWN 3: Video Games (grouped by language) -->
         <div class="menu">
           <button>Video Games ▾</button>
           <ul>
@@ -108,188 +143,101 @@
       </nav>
     </header>
 
-    <!-- ══════════════════════════════
-     CAROUSEL
-     One slide per item across all three dropdowns.
-     Replace each .placeholder div with an <img> once you have screenshots:
-       <img src="img/malloc.png" alt="Malloc screenshot" />
-     The JS below handles prev/next and auto-advance automatically.
-     ══════════════════════════════ -->
+    <!--
+  Carousel: one <div class="slide"> per project.
+  JS reads the slides array, shows one at a time by toggling display.
+  ‹ and › buttons call prev()/next(). No dots, no auto-advance, no CSS transitions.
+-->
     <div class="carousel" id="carousel">
-      <button class="prev" aria-label="Previous">&#8249;</button>
-      <button class="next" aria-label="Next">&#8250;</button>
+      <button onclick="prev()">&#8249;</button>
 
-      <div class="track" id="track">
-        <!-- About Me -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>About Me</h2>
-            <p>CS student, game developer, and programmer.</p>
-            <a href="about.html">Visit page →</a>
-          </div>
-        </div>
+      <div class="info" id="info"></div>
 
-        <!-- Resume -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>Resume</h2>
-            <p>My full resume available as a PDF download.</p>
-            <a href="me/T.Kozuch_CS_PSU_Spring2026.pdf">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- Skills -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>Skills</h2>
-            <p>Languages, tools, and technologies I work with.</p>
-            <a href="skills.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- Malloc -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>Malloc — C</h2>
-            <p>
-              A custom dynamic memory allocator with splitting, coalescing, and
-              first-fit placement.
-            </p>
-            <a href="projects/malloc.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- JBOD -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>JBOD — C</h2>
-            <p>A Just a Bunch Of Disks storage driver implementation in C.</p>
-            <a href="projects/jbod.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- RSA -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>RSA — Python</h2>
-            <p>An implementation of the RSA public-key encryption algorithm.</p>
-            <a href="projects/rsa.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- Course Scheduler -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>Course Scheduler — Java</h2>
-            <p>A scheduling application for managing courses and timetables.</p>
-            <a href="projects/scheduler.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- Excel Automation -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>Excel Automation — VBA</h2>
-            <p>
-              Macros and automation scripts to streamline spreadsheet workflows.
-            </p>
-            <a href="projects/excel.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- CPU -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>CPU Design — Verilog</h2>
-            <p>
-              A pipelined RISC-V CPU with ALU, control unit, and memory
-              hierarchy.
-            </p>
-            <a href="projects/cpu.html">Visit page →</a>
-          </div>
-        </div>
-
-        <!-- Loop-Hole -->
-        <div class="slide">
-          <div class="placeholder">No image yet</div>
-          <div class="slide-text">
-            <h2>Loop-Hole — Python</h2>
-            <p>
-              A puzzle-platformer where time loops are a core game mechanic.
-            </p>
-            <a href="games/loop-hole.html">Visit page →</a>
-          </div>
-        </div>
-      </div>
-      <!-- /.track -->
+      <button onclick="next()">&#8250;</button>
     </div>
-    <!-- /.carousel -->
 
-    <!-- Dot indicators — one per slide, built by JS -->
-    <div class="dots" id="dots"></div>
+    <!-- Slide data — hidden, never rendered directly -->
+    <template id="slides">
+      <div
+        data-href="me/about.html"
+        data-title="About Me"
+        data-desc="CS student, game developer, and programmer."></div>
+      <div
+        data-href="me/T_Kozuch_CS_PSU_Spring2026.pdf"
+        data-title="Resume"
+        data-desc="My full resume as a PDF download."></div>
+      <div
+        data-href="me/skills.html"
+        data-title="Skills"
+        data-desc="Languages, tools, and technologies I work with."></div>
+      <div
+        data-href="projects/malloc.html"
+        data-title="Malloc — C"
+        data-desc="Custom dynamic memory allocator with splitting, coalescing, and first-fit placement."></div>
+      <div
+        data-href="projects/jbod.html"
+        data-title="JBOD — C"
+        data-desc="Storage driver with LRU cache and network support."></div>
+      <div
+        data-href="projects/rsa.html"
+        data-title="RSA — Python"
+        data-desc="Implementation of the RSA public-key encryption algorithm."></div>
+      <div
+        data-href="projects/scheduler.html"
+        data-title="Course Scheduler — Java"
+        data-desc="Role-based scheduling app with Swing GUI and SQL backend."></div>
+      <div
+        data-href="projects/excel.html"
+        data-title="Excel Automation — VBA"
+        data-desc="Macros automating engineering workflows at Leading Technologies."></div>
+      <div
+        data-href="projects/cpu.html"
+        data-title="CPU Design — Verilog"
+        data-desc="Pipelined RISC-V CPU with ALU, control unit, and memory hierarchy."></div>
+      <div
+        data-href="games/loop-hole.html"
+        data-title="Loop-Hole — Python"
+        data-desc="2D platformer where time loops are the core mechanic. GMTK 2025 Game Jam."></div>
+    </template>
 
     <script>
-      /* ── Dropdown menus ── */
+      // Dropdowns
       document.querySelectorAll(".menu > button").forEach((btn) => {
         btn.addEventListener("click", (e) => {
-          e.stopPropagation(); // prevent the document click handler below from firing immediately
-          const menu = btn.parentElement;
-          const isOpen = menu.classList.contains("open");
-          // close all menus, then open this one if it was closed
+          e.stopPropagation();
+          const isOpen = btn.parentElement.classList.contains("open");
           document
             .querySelectorAll(".menu")
             .forEach((m) => m.classList.remove("open"));
-          if (!isOpen) menu.classList.add("open");
+          if (!isOpen) btn.parentElement.classList.add("open");
         });
       });
-      // Click anywhere outside a menu to close all menus
-      document.addEventListener("click", () => {
+      document.addEventListener("click", () =>
         document
           .querySelectorAll(".menu")
-          .forEach((m) => m.classList.remove("open"));
-      });
+          .forEach((m) => m.classList.remove("open")),
+      );
 
-      /* ── Carousel ── */
-      const track = document.getElementById("track");
-      const slides = track.children;
-      const dotsEl = document.getElementById("dots");
-      let current = 0;
-      let timer;
+      // Carousel
+      const slides = [...document.getElementById("slides").content.children];
+      const info = document.getElementById("info");
+      let cur = 0;
 
-      // Build one dot button per slide
-      Array.from(slides).forEach((_, i) => {
-        const d = document.createElement("button");
-        d.setAttribute("aria-label", `Slide ${i + 1}`);
-        if (i === 0) d.classList.add("active");
-        d.addEventListener("click", () => go(i));
-        dotsEl.appendChild(d);
-      });
-
-      function go(n) {
-        dotsEl.children[current].classList.remove("active");
-        current = (n + slides.length) % slides.length; // wrap around with modulo
-        track.style.transform = `translateX(-${current * 100}%)`; // shift track left
-        dotsEl.children[current].classList.add("active");
-        clearInterval(timer);
-        timer = setInterval(() => go(current + 1), 5000); // restart 5s auto-advance
+      function show() {
+        const s = slides[cur].dataset;
+        info.innerHTML = `<div class="thumb"></div><div class="text"><h2>${s.title}</h2><p>${s.desc}</p><a href="${s.href}">Visit page →</a></div>`;
       }
 
-      document
-        .querySelector(".prev")
-        .addEventListener("click", () => go(current - 1));
-      document
-        .querySelector(".next")
-        .addEventListener("click", () => go(current + 1));
-      timer = setInterval(() => go(current + 1), 5000); // start auto-advance
+      function prev() {
+        cur = (cur - 1 + slides.length) % slides.length;
+        show();
+      }
+      function next() {
+        cur = (cur + 1) % slides.length;
+        show();
+      }
+
+      show();
     </script>
   </body>
 </html>

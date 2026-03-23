@@ -1,36 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project - Timothy Kozuch</title>
-  <style>
-    body { font-family: sans-serif; background: #111; color: white; line-height: 1.6; padding: 2rem; }
-    .container { max-width: 800px; margin: 0 auto; }
-    a { color: #57c8ff; text-decoration: none; }
-    header { border-bottom: 2px solid #57c8ff; margin-bottom: 2rem; padding-bottom: 1rem; }
-    .back-link { display: inline-block; margin-bottom: 1rem; }
-    pre { background: #222; padding: 1rem; border-radius: 5px; overflow-x: auto; color: #ccc; }
-    h1 { color: #57c8ff; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Scheduler — Timothy Kozuch</title>
+  <link rel="stylesheet" href="../shared.css" />
 </head>
 <body>
   <div class="container">
     <a href="../index.html" class="back-link">← Back to Home</a>
-    <header>
-      <h1>Project Name</h1> <p>Language: C / Python / Verilog</p>
-    </header>
+    <div class="page-header">
+      <h1>Course Scheduler</h1>
+      <p>Language: Java &nbsp;|&nbsp; Course: Object Oriented Programming with Web Applications, PSU Spring 2024</p>
+    </div>
 
     <section>
       <h2>Description</h2>
-      <p>Detailed explanation of what the project does and the challenges you solved.</p>
+      <p>A course scheduling application with separate administrator and student roles. Administrators can create and manage course offerings; students can browse and enroll. Built with a Java Swing front-end GUI and a SQL database back end.
+      </p>
     </section>
 
     <section>
       <h2>Key Features</h2>
-      <ul>
-        <li>Feature one</li>
-        <li>Feature two</li>
+      <ul style="list-style: disc; padding-left: 1.5rem;">
+        <li>Role-based access: administrator and student views</li>
+        <li>Java Swing GUI for desktop interaction</li>
+        <li>SQL database for persistent course and enrollment data</li>
+        <li>Enrollment conflict detection</li>
       </ul>
     </section>
   </div>

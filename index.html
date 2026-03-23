@@ -4,38 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timothy Kozuch</title>
+    <link rel="stylesheet" href="shared.css" />
     <style>
-      /* ── Reset ── */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        font-family: sans-serif;
-        background: #111;
-        color: white;
-      }
-      a {
-        color: #57c8ff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      ul {
-        list-style: none;
-      }
-      button {
-        cursor: pointer;
-        background: none;
-        border: none;
-        font: inherit;
-        color: white;
-      }
-
       /* ── Header ── */
       header {
         display: flex;
@@ -46,170 +16,39 @@
         border-bottom: 2px solid #57c8ff;
         flex-wrap: wrap;
       }
+      header img { width: 150px; height: 104px; object-fit: cover; flex-shrink: 0; }
+      header h1  { font-size: 1.3rem; white-space: nowrap; }
 
-      header img {
-        width: 150px;
-        height: 104px;
-        object-fit: cover; /* crops the photo to fill the square without stretching */
-        flex-shrink: 0;
-      }
-
-      header h1 {
-        font-size: 1.3rem;
-        white-space: nowrap;
-      }
-
-      /* ── Nav ── */
-      nav {
-        display: flex;
-        gap: 0.25rem;
-        flex-wrap: wrap;
-      }
-
-      /* Each dropdown is a <li> wrapping a <button> and a hidden <ul> */
-      .menu {
-        position: relative;
-      }
-
-      .menu > button {
-        padding: 0.5rem 1rem;
-        background: #333;
-        white-space: nowrap;
-      }
-      .menu > button:hover,
-      .menu.open > button {
-        color: #57c8ff;
-      }
-
-      /* The dropdown panel — hidden by default, shown when .open is added by JS */
+      /* ── Nav dropdowns ── */
+      nav { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+      .menu { position: relative; }
+      .menu > button { padding: 0.5rem 1rem; background: #333; white-space: nowrap; }
+      .menu > button:hover, .menu.open > button { color: #57c8ff; }
       .menu ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        min-width: 200px;
-        background: #222;
-        border-top: 2px solid #57c8ff;
-        z-index: 100;
-        padding: 0.5rem 0;
+        display: none; position: absolute; top: 100%; left: 0;
+        min-width: 200px; background: #222; border-top: 2px solid #57c8ff;
+        z-index: 100; padding: 0.5rem 0;
       }
-      .menu.open ul {
-        display: block;
-      }
-
-      /* Group label inside a dropdown (e.g. "C", "Python") */
-      .menu ul li.group-label {
-        padding: 0.4rem 1rem 0.1rem;
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        color: #57c8ff;
-      }
-
-      .menu ul li a {
-        display: block;
-        padding: 0.4rem 1.25rem;
-        color: white;
-      }
-      .menu ul li a:hover {
-        color: #57c8ff;
-        text-decoration: none;
-        background: #333;
-      }
+      .menu.open ul { display: block; }
+      .menu ul li.group-label { padding: 0.4rem 1rem 0.1rem; font-size: 0.7rem; text-transform: uppercase; color: #57c8ff; }
+      .menu ul li a { display: block; padding: 0.4rem 1.25rem; color: white; }
+      .menu ul li a:hover { color: #57c8ff; text-decoration: none; background: #333; }
 
       /* ── Carousel ── */
-      .carousel {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-      }
-
-      /* The track holds all slides side by side; transform:translateX moves between them */
-      .track {
-        display: flex;
-        transition: transform 0.4s ease;
-      }
-
-      /* Each slide fills 100% of the carousel width */
-      .slide {
-        min-width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        padding: 2rem;
-        background: #222;
-      }
-
-      .slide img {
-        width: 260px;
-        height: 180px;
-        object-fit: cover;
-        flex-shrink: 0;
-      }
-
-      /* Placeholder box when there is no real screenshot yet */
-      .slide .placeholder {
-        width: 260px;
-        height: 180px;
-        background: #333;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.85rem;
-        color: #777;
-        flex-shrink: 0;
-      }
-
-      .slide-text h2 {
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
-      }
-      .slide-text p {
-        font-size: 0.9rem;
-        color: #ccc;
-        max-width: 40ch;
-      }
-      .slide-text a {
-        display: inline-block;
-        margin-top: 0.75rem;
-      }
-
-      /* Prev / Next buttons positioned at left and right edges of the carousel */
-      .carousel button.prev,
-      .carousel button.next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        font-size: 1.5rem;
-        padding: 0.5rem 0.75rem;
-        z-index: 10;
-      }
-      .carousel button.prev {
-        left: 0;
-      }
-      .carousel button.next {
-        right: 0;
-      }
-
-      /* Dot indicators below the carousel */
-      .dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.4rem;
-        padding: 0.75rem;
-        background: #222;
-      }
-      .dots button {
-        width: 10px;
-        height: 10px;
-        background: #555;
-        padding: 0;
-      }
-      .dots button.active {
-        background: #57c8ff;
-      }
+      .carousel { position: relative; overflow: hidden; width: 100%; }
+      .track    { display: flex; transition: transform 0.4s ease; }
+      .slide    { min-width: 100%; display: flex; align-items: center; justify-content: center; gap: 2rem; padding: 2rem; background: #222; }
+      .slide img        { width: 260px; height: 180px; object-fit: cover; flex-shrink: 0; }
+      .slide .placeholder { width: 260px; height: 180px; background: #333; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: #777; flex-shrink: 0; }
+      .slide-text h2    { font-size: 1.4rem; margin-bottom: 0.5rem; }
+      .slide-text p     { font-size: 0.9rem; color: #ccc; max-width: 40ch; }
+      .slide-text a     { display: inline-block; margin-top: 0.75rem; }
+      .carousel button.prev, .carousel button.next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); font-size: 1.5rem; padding: 0.5rem 0.75rem; z-index: 10; }
+      .carousel button.prev { left: 0; }
+      .carousel button.next { right: 0; }
+      .dots { display: flex; justify-content: center; gap: 0.4rem; padding: 0.75rem; background: #222; }
+      .dots button { width: 10px; height: 10px; background: #555; padding: 0; }
+      .dots button.active { background: #57c8ff; }
     </style>
   </head>
   <body>

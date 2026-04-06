@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instruction Set — Timothy Kozuch</title>
+    <link rel="stylesheet" href="../shared.css" />
+  </head>
+  <body>
+    <div class="container">
+      <a href="../index.html" class="back-link">← Back to Home</a>
+
+      <div class="page-header">
+        <h1>How to Build a Webpage</h1>
+        <p style="color: #888">
+          An instruction set for creating your first web page with HTML and CSS.
+        </p>
+      </div>
+
+      <section id="intro">
+        <h3>Introduction</h3>
+        <p>
+          This instruction set guides novice users through learning how HTML and CSS can be used to create a webpage. HTML(hypertext markup language) and CSS (___ Style Sheet) are the foundation of any webpage that you see across the internet. 
+        </p>
+        <ul style="margin-top: 1rem; color: #ccc">
+          <li><strong>Total Time:</strong> __ minutes</li>
+          <li>
+            <strong>Skills Required:</strong> Basic computer literacy and ability to manage files in the file exploror. 
+          </li>
+          <li>
+            <strong>Required Materials:</strong>You will need a professional code editor like
+          VS Code, a modern web browser like chrome, and a folder on your local machine to store your HTML and CSS files.
+          </li>
+        </ul>
+      </section>
+
+      <section class="step-section" id="step1">
+        <h3>Step 1: Environment Setup</h3>
+        <p>
+          1. Create a new folder on your Desktop named FirstWebPage.
+        </p>
+        <p>
+          2. Open VS Code and select <em>File > Open Folder</em> to open the
+          directory.
+        </p>
+        <p>
+          3. Create the project files named exactly <code>index.html</code> and
+          <code>style.css</code>.
+        </p>
+      </section>
+
+      <section class="step-section" id="step2">
+        <h3>Step 2: Construct the HTML Skeleton</h3>
+        <p>
+          Open <code>index.html</code> and insert the boilerplate code below.
+          This establishes the link between your content and your stylesheet.
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Project Started&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre
+        >
+      </section>
+
+      <section class="step-section" id="step3">
+        <h3>Step 3: Define Visual Styles</h3>
+        <p>
+          Navigate to <code>style.css</code> and apply these rules to set the
+          background color and typography:
+        </p>
+        <pre>
+body {
+  background-color: #111;
+  color: #ccc;
+  font-family: sans-serif;
+}
+h1 {
+  color: #57c8ff;
+}</pre
+        >
+      </section>
+
+      <section id="troubleshooting">
+        <h3>Troubleshooting</h3>
+        <p>
+          If the page is blank, verify you saved the files. If colors aren't
+          changing, ensure the <code>href</code> in your HTML matches your CSS
+          filename exactly.
+        </p>
+      </section>
+
+      <section id="glossary">
+        <p>
+          <strong>HTML:</strong> Standard language for web content structure.<br />
+          <strong>CSS:</strong> Language used for visual layout, colors, and
+          fonts.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>

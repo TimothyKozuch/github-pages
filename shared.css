@@ -66,28 +66,42 @@ section {
   margin-bottom: 1.5rem;
 }
 
+.container {
+  width: 100%; /* Ensures the content spreads to the screen edges */
+  margin: 0 auto;
+  padding: 2rem;
+}
+
 /* The container that holds both sides */
 .step-container {
   display: flex;
   gap: 40px; /* Adds space between text and code */
   align-items: flex-start;
-  margin-bottom: 60px; /* Space between different steps */
+  margin-bottom: 20px; /* Space between different steps */
   padding: 2px;
 }
 
 /* The left side (Text) */
 .step-text {
-  flex: 1; /* Takes up 50% of the space */
+  flex: 1; /* This remains 1 so it grows to fill all available "leftover" space */
 }
 
 /* The right side (Code/Images) */
 .step-visual {
-  flex: 1; /* Takes up the other 50% */
-  background: #1e1e1e; /* Darker background for code blocks */
+  flex: 0 0 auto;    /* 1. Do not grow, Do not shrink, Stay at natural width */
+  min-width: 300px;  /* 2. Optional: prevents it from getting too skinny */
+  max-width: 50%;    /* 3. Optional: prevents it from eating the whole screen if code is long */
+  
+  background: #1e1e1e;
   padding: 15px;
   border-radius: 8px;
-  position: sticky; /* Optional: keeps the code visible as they read */
+  position: sticky;
   top: 20px;
+}
+
+.step-visual img {
+  max-width: 600px; /* Limits images only when they are inside a step-visual div */
+  height: auto;
 }
 
 /* Mobile Responsiveness: Stack them back up on small screens */
@@ -95,4 +109,16 @@ section {
   .step-container {
     flex-direction: column;
   }
+}
+
+/* Indent lists within your instruction text */
+.step-text ul, 
+.step-text ol {
+  margin-left: 20px;   /* Pushes the entire list to the right */
+  margin-bottom: 1rem; /* Adds space below the list */
+}
+
+.step-text li {
+  margin-bottom: 0.5rem; /* Adds space between each list item */
+  list-style: disc;      /* Ensures bullet points are visible */
 }

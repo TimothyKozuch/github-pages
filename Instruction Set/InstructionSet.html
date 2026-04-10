@@ -1,8 +1,6 @@
 <!doctype html>
-<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instruction Set — Timothy Kozuch</title>
     <link rel="stylesheet" href="../shared.css" />
   </head>
@@ -20,7 +18,7 @@
       <section id="intro">
         <h3>Introduction</h3>
         <p>
-          This instruction set guides novice users through learning how HTML and CSS can be used to create a webpage. HTML(hypertext markup language) and CSS (___ Style Sheet) are the foundation of any webpage that you see across the internet. 
+          This instruction set guides novice users through learning how HTML and CSS can be used to create a webpage. HTML(hypertext markup language) and CSS (Cascading Style Sheet) are the foundation of any webpage that you see across the internet. 
         </p>
         <ul style="margin-top: 1rem; color: #ccc">
           <li><strong>Total Time:</strong> __ minutes</li>
@@ -28,8 +26,10 @@
             <strong>Skills Required:</strong> Basic computer literacy and ability to manage files in the file exploror. 
           </li>
           <li>
-            <strong>Required Materials:</strong>You will need a professional code editor like
-          VS Code, a modern web browser like chrome, and a folder on your local machine to store your HTML and CSS files.
+            <strong>Required Materials: </strong> 
+            <p>1: A modern web browser like chrome</p>
+            <p>2: A code editor like VS Code</p>
+                    <p>(you can download it <a href="https://code.visualstudio.com/" class="link">here</a> and if you need additional help there are guides on youtube like <a href="https://www.youtube.com/watch?v=1W0hL6_uX9A" class="link">this</a>) </p>
           </li>
         </ul>
       </section>
@@ -37,25 +37,27 @@
       <section class="step-section" id="step1">
         <h3>Step 1: Environment Setup</h3>
         <p>
-          1. Create a new folder on your Desktop named FirstWebPage.
+          1. Create a new folder on your Desktop named FirstWebPage. 
+          You can do this by right clicking on your desktop (not an application on the desktop) and selecting <em>new > Folder</em>.You can then type "FirstWebPage" to name it and then press enter to finish creating it. 
         </p>
-        <p>
-          2. Open VS Code and select <em>File > Open Folder</em> to open the
-          directory.
+
+        <p> 2. Open VS Code and select <em>File > Open Folder</em> to open the directory. Navigate to the folder you created on the desktop and open it.
         </p>
+
         <p>
-          3. Create the project files named exactly <code>index.html</code> and
-          <code>style.css</code>.
+          3. Click on <em>File > New File</em> at the top left corner of VS code to create two files and name them "index.html" and "style.css".
         </p>
       </section>
+      
+      <section class="step-container">
+        <div class="step-text">
+          <h3>Step 2: Construct the HTML Skeleton</h3>
+          <p>Open <code>index.html</code> and insert the boilerplate code below.</p>
+          <p>This establishes the link between your content and your stylesheet.</p>
+        </div>
 
-      <section class="step-section" id="step2">
-        <h3>Step 2: Construct the HTML Skeleton</h3>
-        <p>
-          Open <code>index.html</code> and insert the boilerplate code below.
-          This establishes the link between your content and your stylesheet.
-        </p>
-        <pre>
+        <div class="step-visual">
+          <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -64,17 +66,22 @@
 &lt;body&gt;
   &lt;h1&gt;Project Started&lt;/h1&gt;
 &lt;/body&gt;
-&lt;/html&gt;</pre
-        >
+&lt;/html&gt;
+          </pre>
+        </div>
       </section>
 
-      <section class="step-section" id="step3">
-        <h3>Step 3: Define Visual Styles</h3>
-        <p>
-          Navigate to <code>style.css</code> and apply these rules to set the
-          background color and typography:
-        </p>
-        <pre>
+      <section class="step-container">
+        <div class="step-text">
+          <h3>Step 3: Define Visual Styles</h3>
+          <p>
+            Navigate to <code>style.css</code> and apply these rules to set the
+            background color and typography:
+          </p>
+        </div>
+
+        <div class="step-visual">
+          <pre>
 body {
   background-color: #111;
   color: #ccc;
@@ -82,8 +89,9 @@ body {
 }
 h1 {
   color: #57c8ff;
-}</pre
-        >
+}         </pre>
+      
+        </div>
       </section>
 
       <section id="troubleshooting">

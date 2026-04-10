@@ -1,7 +1,10 @@
 /* ── Reset ── */
-*, *::before, *::after { 
-  box-sizing: border-box; 
-  margin: 0; padding: 0; 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -11,33 +14,32 @@ body {
   line-height: 1.6;
 }
 
-a    { 
-  color: #57c8ff; 
-  text-decoration: none; 
+a {
+  color: #57c8ff;
+  text-decoration: none;
 }
-a:hover { 
-  text-decoration: underline; 
-}
-
-ul   { 
-  list-style: none; 
+a:hover {
+  text-decoration: underline;
 }
 
-button { 
-  cursor: pointer; 
-  background: none; 
-  border: none; 
-  font: inherit; 
-  color: white; 
+ul {
+  list-style: none;
 }
 
-h1 { 
-  color: #57c8ff; 
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  color: white;
+}
+
+h1 {
+  color: #57c8ff;
 }
 
 /* ── Project / subpage layout ── */
 .container {
-  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -60,4 +62,37 @@ pre {
   color: #ccc;
 }
 
-section { margin-bottom: 1.5rem; }
+section {
+  margin-bottom: 1.5rem;
+}
+
+/* The container that holds both sides */
+.step-container {
+  display: flex;
+  gap: 40px; /* Adds space between text and code */
+  align-items: flex-start;
+  margin-bottom: 60px; /* Space between different steps */
+  padding: 2px;
+}
+
+/* The left side (Text) */
+.step-text {
+  flex: 1; /* Takes up 50% of the space */
+}
+
+/* The right side (Code/Images) */
+.step-visual {
+  flex: 1; /* Takes up the other 50% */
+  background: #1e1e1e; /* Darker background for code blocks */
+  padding: 15px;
+  border-radius: 8px;
+  position: sticky; /* Optional: keeps the code visible as they read */
+  top: 20px;
+}
+
+/* Mobile Responsiveness: Stack them back up on small screens */
+@media (max-width: 768px) {
+  .step-container {
+    flex-direction: column;
+  }
+}

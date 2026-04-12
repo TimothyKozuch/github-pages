@@ -91,7 +91,6 @@
       .thumb {
         width: 480px;
         height: 320px;
-        background: black;
         flex-shrink: 0;
       }
       .text h2 {
@@ -116,10 +115,7 @@
         <div class="menu">
           <button>About Me/ Resume ▾</button>
           <ul>
-            <li><a href="me/about.html">About Me</a></li>
-            <li>
-              <a href="me/T.Kozuch_CS_PSU_Spring2026.pdf">Resume (PDF)</a>
-            </li>
+            <li><a href="me/aboutMe.html">About Me</a></li>
           </ul>
         </div>
 
@@ -174,43 +170,48 @@
     <!-- Slide data — hidden, never rendered directly -->
     <template id="slides">
       <div
-        data-href="me/about.html"
+        data-href="me/aboutMe.html"
+        data-img="img\cute-avocado.jpg"
         data-title="About Me"
         data-desc="CS student, game developer, and programmer."></div>
       <div
         data-href="me/T_Kozuch_CS_PSU_Spring2026.pdf"
+        data-img="img\resume.png"
         data-title="Resume"
         data-desc="My full resume as a PDF download."></div>
       <div
-        data-href="me/skills.html"
-        data-title="Skills"
-        data-desc="Languages, tools, and technologies I work with."></div>
-      <div
         data-href="projects/malloc.html"
+        data-img="img\malloc.png"
         data-title="Malloc — C"
         data-desc="Custom dynamic memory allocator with splitting, coalescing, and first-fit placement."></div>
       <div
         data-href="projects/jbod.html"
+        data-img="img\JBOD.png"
         data-title="JBOD — C"
         data-desc="Storage driver with LRU cache and network support."></div>
       <div
         data-href="projects/rsa.html"
+        data-img="img\RSA.png"
         data-title="RSA — Python"
         data-desc="Implementation of the RSA public-key encryption algorithm."></div>
       <div
         data-href="projects/scheduler.html"
+        data-img=""
         data-title="Course Scheduler — Java"
         data-desc="Role-based scheduling app with Swing GUI and SQL backend."></div>
       <div
         data-href="projects/excel.html"
+        data-img="img\VBAexample.png"
         data-title="Excel Automation — VBA"
         data-desc="Macros automating engineering workflows at Leading Technologies."></div>
       <div
         data-href="projects/cpu.html"
+        data-img="img\pipelineCPU.jpg"
         data-title="CPU Design — Verilog"
         data-desc="Pipelined RISC-V CPU with ALU, control unit, and memory hierarchy."></div>
       <div
         data-href="games/loop-hole.html"
+        data-img="img\loopHole.png"
         data-title="Loop-Hole — Python"
         data-desc="2D platformer where time loops are the core mechanic. GMTK 2025 Game Jam."></div>
     </template>
@@ -227,31 +228,62 @@
           if (!isOpen) btn.parentElement.classList.add("open");
         });
       });
+
       document.addEventListener("click", () =>
         document
           .querySelectorAll(".menu")
           .forEach((m) => m.classList.remove("open")),
       );
 
-      // Carousel
+      // Carousel logic
       const slides = [...document.getElementById("slides").content.children];
       const info = document.getElementById("info");
       let cur = 0;
+      let autoScroll; // Variable to hold the timer
 
       function show() {
         const s = slides[cur].dataset;
-        info.innerHTML = `<div class="thumb"></div><div class="text"><h2>${s.title}</h2><p>${s.desc}</p><a href="${s.href}">Visit page →</a></div>`;
+        
+        info.innerHTML = `
+          <div class="thumb"></div>
+          <div class="text">
+            <h2>${s.title}</h2>
+            <p>${s.desc}</p>
+            <a href="${s.href}">Visit page →</a>
+          </div>
+        `;
+
+        const thumb = info.querySelector('.thumb');
+        const imagePath = s.img.replace(/\\/g, '/'); 
+        thumb.style.backgroundImage = `url('${imagePath}')`;
+        
+        thumb.style.backgroundSize = 'contain'; 
+        thumb.style.backgroundPosition = 'center';
+        thumb.style.backgroundRepeat = 'no-repeat';
+
+        // Reset the 7-second timer whenever a new slide is shown
+        resetTimer();
       }
 
       function prev() {
         cur = (cur - 1 + slides.length) % slides.length;
         show();
       }
+
       function next() {
         cur = (cur + 1) % slides.length;
         show();
       }
 
+      // Helper function to handle the 7-second interval
+      function resetTimer() {
+        clearInterval(autoScroll);
+        autoScroll = setInterval(() => {
+          next();
+        }, 7000); // 7000 milliseconds = 7 seconds
+      }
+
+      // Initial call
       show();
     </script>
   </body>

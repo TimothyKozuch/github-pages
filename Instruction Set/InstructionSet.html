@@ -39,35 +39,31 @@
 
 
 
-
-      <section class="step-section" id="step1">
-        <h2>Step 1: Environment Setup</h2>
+      <section id="Setup">
+        <h2>Step 0: Environment Setup</h2>
+        
         <section class="step-container">
           <div class="step-text">
             <p>
-              A: Create a new folder on your Desktop named FirstWebPage. 
-              You can do this by right clicking on your desktop (not an application on the desktop) and selecting <em>new > Folder</em>.You can then type "FirstWebPage" to name it and then press enter to finish creating it. 
+              A: Create a new folder on your Desktop named FirstWebPage. You can do this by right clicking on your desktop (not an application on the desktop) and selecting <em>new > Folder</em>.You can then type "FirstWebPage" to name it and then press enter to finish creating it. 
+            </p>
+
+            <p> B: (shown in image) Open VS Code and select <em>File > Open Folder</em> to open the directory(green arrow then red arrow). Navigate to the folder you created on the desktop and open it.
             </p>
           </div>
           <div class="step-visual">
-
-          </div>
-        </section>
-        
-
-        <section class="step-container">
-          <div class="step-text">
-            <p> B: Open VS Code and select <em>File > Open Folder</em> to open the directory. Navigate to the folder you created on the desktop and open it.
-            </p>
-          </div>
-          <div class="step-visual">
+            <img src="..\img\openFolder.png" alt="Screenshot showing how to open the folder in VS Code" />
             
           </div>
         </section>
         
         <section class="step-container">
           <div class="step-text">
-            <p> C: Go to extensions on the left hand side of the screen, it looks like four boxes, and search and instal "Live Server" by Ritwick Dey. After you instal it you can see what your page looks like by clicking go live at the bottom right of VS code. 
+            <p> C: (shown in image) Go to extensions on the left hand side of the screen(green arrow), it looks like four boxes, and search and instal "Live Server" by Ritwick Dey. After you install it, you can see what your page looks like by clicking go live at the bottom right of VS code(red arrow).
+            </p>
+
+            <p>
+              D: Click on <em>File > New File</em> at the top left corner of VS code, like you did to open the folder, to create two new files and name them "index.html" and "style.css".
             </p>
           </div>
           <div class="step-visual">
@@ -75,56 +71,55 @@
           </div>
         </section>
 
-        <section class="step-container">
-          <div class="step-text">
-            <p>
-              D: Click on <em>File > New File</em> at the top left corner of VS code to create two files and name them "index.html" and "style.css".
-            </p>
-          </div>
-          <div class="step-visual">
-            
-          </div>
-        </section>
-        
       </section>
-      <h2>Info about HTML</h2>
-      <p>
-        HTML is the basic building blocks of a webpage and makes up the structure 
-      </p>
+
+      <section>
+        <h2>The Fundamentals of HTML</h2>
+        
+        <p>
+          <strong>HTML (HyperText Markup Language)</strong> is the structure/skeleton of the internet. While it is often thought to be a programming language, it is actually a markup language which means it only determines how to display content not handle logic or calculations. It uses a system of tags to annotate elements so that browsers can interperet how to properly display the content of the page.
+        </p>
+
+        <p>
+          An HTML <strong>element</strong> usually consists of an opening tag, the content, and a closing tag (e.g., &lt;tag&gt;content&lt;/tag&gt;). However, tags can also have <strong>attributes</strong>, which provide additional information, such as a source for an image or a destination for a link (e.g. &lt;a href="https://address.com/" class="link"&gt;linked text&lt;/a&gt;).
+        </p>
+      </section>
+
       <section class="step-container" id="step2">
         <div class="step-text">
-          <h2>Step 2: Construct the HTML Skeleton & Elements</h2>
-          <p>Open <code>index.html</code> and build your page structure using these essential tags:</p>
-
-          <h3>A: The Skeleton</h3>
+          <h2>Step 1: Construct the HTML Skeleton</h2>
+          <p>Open <code>index.html</code> and establish the document's foundation and "behind-the-scenes" information:</p>
+          
           <ul>
-            <li><strong>&lt;!DOCTYPE html&gt;</strong>: The Document Type Declaration tells the browser you're using HTML5 so it can properly display it.</li>
-            <li><strong>&lt;html&gt;</strong>: The Root Element that wraps the entire document.</li>
-            <li><strong>&lt;head&gt;</strong>: The Metadata Container for info that doesn't show up on the page (like links to CSS).</li>
-            <li><strong>&lt;body&gt;</strong>: The Content Area where everything you see (text, images, buttons) lives.</li>
-          </ul>
-
-          <h3>B: The Brains (Head)</h3>
-          <ul>
-            <li><strong>&lt;meta charset="UTF-8"&gt;</strong>: Ensures special characters and symbols display correctly.</li>
+            <li><strong>&lt;!DOCTYPE html&gt;</strong>: The declaration that tells the browser you're using HTML5.</li>
+            <li><strong>&lt;html&gt;</strong>: The Root Element that wraps every other piece of code.</li>
+            <li><strong>&lt;head&gt;</strong>: The Metadata Container for info that doesn't show up on the page.</li>
+            <li><strong>&lt;body&gt;</strong>: The Content Area where everything visible (text, images, buttons) lives.</li>
+            <li><strong>&lt;meta charset="UTF-8"&gt;</strong>: Ensures special characters display correctly.</li>
             <li><strong>&lt;title&gt;</strong>: The Tab Name seen in the browser or search results.</li>
-            <li><strong>&lt;link rel="stylesheet" href="style.css"&gt;</strong>: The "Paint" bridge that connects your HTML to your CSS file.</li>
+            <li><strong>&lt;link rel="stylesheet" href="style.css"&gt;</strong>: The bridge that connects your HTML to your CSS file.</li>
           </ul>
 
-          <h3>C: The Content (Body)</h3>
+          <h2>Step 2: Define the Boxes (Containers)</h2>
+          <p>Use containers to group elements and organize the layout of your page:</p>
+          
           <ul>
-            <li><strong>Headings (&lt;h1&gt;)</strong>: Used to show different sections of content and can have sub heading using h2,h3,etc..</li>
-            <li><strong>&lt;p&gt;</strong>: Standard paragraphs for text.</li>
-            <li><strong>&lt;strong&gt; & &lt;em&gt;</strong>: Formatting for **bold** and *italics*.</li>
-            <li><strong>&lt;a&gt; (Anchor)</strong>: Creates links. You must use the <code>href</code> attribute to tell it where to go.</li>
-            <li><strong>&lt;img&gt;</strong>: Displays pictures using the <code>src</code> attribute. This is a "self-closing" tag.</li>
+            <li><strong>&lt;div&gt;</strong>: A generic container used to group elements for styling.</li>
+            <li><strong>&lt;section&gt;</strong>: Defines a specific section of content, like an "About" area.</li>
+            <li><strong>&lt;article&gt;</strong>: Used for independent, self-contained content like a blog post.</li>
+            <li><strong>&lt;nav&gt;</strong>: Tells the browser that this box contains navigation links.</li>
+          </ul>
+
+          <h2>Step 3: Add the Content</h2>
+          <p>Fill your "boxes" with the elements the user will actually see and interact with:</p>
+          
+          <ul>
+            <li><strong>Headings (&lt;h1&gt;)</strong>: Used to show different levels of content hierarchy.</li>
+            <li><strong>&lt;p&gt;</strong>: Standard paragraphs used for blocks of text.</li>
+            <li><strong>&lt;strong&gt; &amp; &lt;em&gt;</strong>: Formatting tags for **bold** and *italics*.</li>
+            <li><strong>&lt;a&gt; (Anchor)</strong>: Creates links; requires the <code>href</code> attribute.</li>
+            <li><strong>&lt;img&gt;</strong>: Displays pictures using the <code>src</code> attribute.</li>
             <li><strong>&lt;button&gt;</strong>: Creates a clickable button.</li>
-          </ul>
-
-          <h3>The Boxes</h3>
-          <ul>
-            <li><strong>&lt;div&gt;</strong>: A generic container used to group elements together.</li>
-            <li><strong>&lt;section&gt;, &lt;article&gt;, &lt;nav&gt;</strong>: Similar to divs, but they tell the browser exactly what the content is (e.g., a menu or a post).</li>
           </ul>
         </div>
 
@@ -134,7 +129,6 @@
 &lt;html lang="en"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;My First Page&lt;/title&gt;
     &lt;link rel="stylesheet" href="style.css"&gt;
 &lt;/head&gt;

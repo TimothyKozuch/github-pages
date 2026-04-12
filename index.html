@@ -30,27 +30,35 @@
         padding: 0.5rem 1rem;
         background: #444;
       }
+
       .menu ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        min-width: 180px;
-        background: #444;
-        z-index: 1;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px; /* Slightly wider to accommodate indentation */
+      background: #2a2a2a; /* Darker than the carousel's #444 */
+      z-index: 10;          /* Higher z-index to ensure it stays on top */
+      border: 1px solid #57c8ff; /* Optional: a thin border in your theme color */
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.5); /* Adds depth */
       }
+
       .menu.open ul {
         display: block;
       }
+
+      /* Bold the language labels (C, Python, Java, etc.) */
       .group-label {
-        padding: 0.4rem 1rem 0.1rem;
-        font-size: 0.7rem;
+        padding: 0.6rem 1rem 0.2rem; /* Adjusted padding for better spacing */
+        font-size: 0.75rem;
         text-transform: uppercase;
+        font-weight: bold;      /* Makes the language bold */
+        color: #57c8ff;         /* Optional: gives them the theme color to pop */
       }
-      .menu ul a {
-        display: block;
-        padding: 0.35rem 1rem;
-        color: white;
+
+      /* Indent the project links */
+      .menu ul li:not(.group-label) {
+        padding-left: 2rem;     /* Pushes the project names to the right */
       }
 
       .carousel {
@@ -106,13 +114,12 @@
       <h1>Timothy Kozuch</h1>
       <nav>
         <div class="menu">
-          <button>Technical Skills / Resume ▾</button>
+          <button>About Me/ Resume ▾</button>
           <ul>
             <li><a href="me/about.html">About Me</a></li>
             <li>
               <a href="me/T.Kozuch_CS_PSU_Spring2026.pdf">Resume (PDF)</a>
             </li>
-            <li><a href="me/skills.html">Skills</a></li>
           </ul>
         </div>
 
@@ -120,16 +127,16 @@
           <button>Technical Projects ▾</button>
           <ul>
             <li class="group-label">C</li>
-            <li><a href="projects/malloc.html">Malloc</a></li>
-            <li><a href="projects/jbod.html">JBOD</a></li>
+              <li><a href="projects/malloc.html">Malloc</a></li>
+              <li><a href="projects/jbod.html">JBOD</a></li>
             <li class="group-label">Python</li>
-            <li><a href="projects/rsa.html">RSA</a></li>
+              <li><a href="projects/rsa.html">RSA</a></li>
             <li class="group-label">Java</li>
-            <li><a href="projects/scheduler.html">Course Scheduler</a></li>
+              <li><a href="projects/scheduler.html">Course Scheduler</a></li>
             <li class="group-label">VBA</li>
-            <li><a href="projects/excel.html">Excel Automation</a></li>
+              <li><a href="projects/excel.html">Excel Automation</a></li>
             <li class="group-label">Verilog</li>
-            <li><a href="projects/cpu.html">CPU</a></li>
+              <li><a href="projects/cpu.html">CPU</a></li>
           </ul>
         </div>
 

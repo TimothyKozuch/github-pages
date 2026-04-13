@@ -92,9 +92,6 @@ section {
   min-width: 300px;  /* 2. Optional: prevents it from getting too skinny */
   max-width: 50%;    /* 3. Optional: prevents it from eating the whole screen if code is long */
   
-  background: #1e1e1e;
-  padding: 15px;
-  border-radius: 8px;
   position: sticky;
   top: 20px;
 }

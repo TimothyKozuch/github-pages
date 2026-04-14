@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"></html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Instruction Set — Timothy Kozuch</title>
@@ -18,22 +18,40 @@
 
       <section id="intro">
         <h2>Introduction</h2>
-        <p>
-          This instruction set guides novice users through learning how HTML can be used to create a webpage. HTML(hypertext markup language) is the foundation of any webpage that you see across the internet. 
-        </p>
-        <ul style="margin-top: 1rem; color: #cdddf8">
-          <li><strong>Total Time:</strong> __ minutes</li>
-          <li>
-            <strong>Skills Required:</strong> Basic computer literacy and ability to manage files in the file exploror. 
-          </li>
-          <li>
-            <strong>Required Materials: </strong> 
-            <p>1: A modern web browser like chrome</p>
+        <section class="step-container">
+          <div class="step-text">
             <p>
-              2: A code editor like VS Code (you can download VS Code <a href="https://code.visualstudio.com/" class="link">here</a> and if you need additional help there are guides on youtube like <a href="https://www.youtube.com/watch?v=1W0hL6_uX9A" class="link">this</a>) 
+              This instruction set guides novice users through learning how HTML can be used to create a webpage. It does not include how to host the created webpage, only the writing of the HTML.
             </p>
-          </li>
-        </ul>
+            <p>Steps Include</p>
+            <ol style="list-style-type: decimal;">
+              <li><strong>Environment Setup:</strong> Setting up the development environment</li>
+              <li><strong>Create the HTML Foundation:</strong> Creating the standard HTML boilerplate</li>
+              <li><strong>Create the Structural Layout:</strong> Creating Sections to orginize content</li>
+              <li><strong>Add Your Content:</strong> Place the actual content on the webpage</li>
+              <li><strong>Style Your Page:</strong> Use minimal CSS to style your page</li>
+            </ol>
+            <ul style="margin-top: 1rem; color: #cdddf8">
+              <li><strong>Total Time Required:</strong> 30–45 minutes</li>
+              <li>
+                <strong>Skills Required:</strong> Basic file management involving creating, moving, and naming folders.
+              </li>
+              <li>
+                <strong>Required Materials: </strong> 
+                <p>1: A modern web browser like Chrome</p>
+                <p>
+                  2: A code editor like VS Code (you can download VS Code <a href="https://code.visualstudio.com/" class="link">here</a>, and if you need additional help downloading it there are guides on youtube like <a href="https://www.youtube.com/watch?v=1W0hL6_uX9A" class="link">this</a>) 
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="step-visual">
+            <figure>
+              <img src="..\img\examplePage.png" style="border: 5px solid #57c8ff;" alt="Example Page" />
+              <figcaption>An example webpage made using the instruction set</figcaption>
+            </figure>
+          </div>
+        </section>
       </section>
 
 
@@ -45,21 +63,25 @@
         <section class="step-container">
           <div class="step-text">
             <p>
-              A: Create a new folder on your Desktop named FirstWebPage. You can do this by right clicking on your desktop (not an application on the desktop) and selecting <em>new > Folder</em>.You can then type "FirstWebPage" to name it and then press enter to finish creating it. 
+              A: Create a new folder on your Desktop named "FirstWebPage". You can do this by right clicking on your desktop (not an application on the desktop) and selecting <em>new > Folder</em>.You can then type "FirstWebPage" to name it and then press enter to finish creating it. 
             </p>
 
-            <p> B: (shown in image) Open VS Code and select <em>File > Open Folder</em> to open the directory(green arrow then red arrow). Navigate to the folder you created on the desktop and open it.
+            <p> B: (shown in image) Open VS Code and select <em>File > Open Folder</em> to open the directory (green arrow then red arrow). Navigate to the folder you created on the desktop and open it.
             </p>
           </div>
           <div class="step-visual">
-            <img src="..\img\openFolder.png" alt="Screenshot showing how to open the folder in VS Code" />
+            <figure>
+              <img src="..\img\openFolder.png" alt="Screenshot showing how to open the folder in VS Code" />
+              <figcaption>A screenshot showing how to open the folder in VS Code</figcaption>
+            </figure>
+            
             
           </div>
         </section>
         
         <section class="step-container">
           <div class="step-text">
-            <p> C: (shown in image) Go to extensions on the left hand side of the screen(green arrow), it looks like four boxes, and search and instal "Live Server" by Ritwick Dey. After you install it, you can see what your page looks like by clicking go live at the bottom right of VS code(red arrow).
+            <p> C: (shown in image) Go to extensions on the left hand side of the screen(green arrow), it looks like four boxes, and search and install "Live Server" by Ritwick Dey. After you install it, you can see what your page looks like by clicking go live at the bottom right of VS code(red arrow).
             </p>
 
             <p>
@@ -67,7 +89,11 @@
             </p>
           </div>
           <div class="step-visual">
-            <img src="../img/LiveServer.png" alt="Screenshot showing how to install live server extension" />
+            <figure>
+              <img src="../img/LiveServer.png" alt="Screenshot showing how to install live server extension" />
+              <figcaption>A screenshot showing how to install live server extension</figcaption>
+            </figure>
+            
           </div>
         </section>
 
@@ -77,7 +103,7 @@
         <h2>The Fundamentals of HTML</h2>
         
         <p>
-          <strong>HTML (HyperText Markup Language)</strong> is the structure/skeleton of the internet. While it is often thought to be a programming language, it is actually a markup language which means it only determines how to display content not handle logic or calculations. It uses a system of tags to annotate elements so that browsers can interperet how to properly display the content of the page.
+          <strong>HTML (HyperText Markup Language)</strong> is the structure of the internet. While it is often thought to be a programming language, it is actually a markup language which means it only determines how to display content not handle logic or calculations. It uses a system of tags to annotate elements so that browsers can interperet how to properly display the content of the page.
         </p>
 
         <p>
@@ -90,15 +116,15 @@
         <div class="step-text">
           <h2>Step 1: Create the HTML Foundation</h2>
           <p>
-            After creating the empty html file it should have automatically opened in VS Code. If it did not open double click on it in the left panel to open it up. In this section we will place the basic boilerplate used in HTML at the top of the file in order for the browser to interpret our page properly. 
+            After creating the empty html file it should have automatically opened in VS Code. If it did not open double click on it in the left panel to open it up. In this section we will place the standard boilerplate used in HTML at the top of the file in order for the browser to interpret our page properly. 
           </p>
           
           <ol>
             <li>Place <strong>&lt;!DOCTYPE html&gt;</strong> at the very top to tell the browser you're using HTML5.</li>
             <li>Next use <strong>&lt;html lang="en"&gt;&lt;/html&gt;</strong> to wrap our <strong>&lt;head&gt;</strong>(invisible information) and <strong>&lt;body&gt;</strong>(visible content) in one element.</li>
             <li>To tell the browser what set of characters we are using, the title of the page, and any other metadata that won't actually appear on the page place the <strong>&lt;head&gt;</strong>.</li>
-            <li>Place <strong>&lt;meta charset="UTF-8"&gt;</strong> inside the <strong>&lt;head&gt;</strong> to ensures special characters and symbols display correctly on your page.</li>
-            <li>Along with the charset, place <strong>&lt;title&gt;My First Page&lt;title&gt;</strong> in the <strong>&lt;head&gt;</strong>. This will set the tab name seen in the browser or search results.</li>
+            <li>Place <strong>&lt;meta charset="UTF-8"&gt;</strong> inside the <strong>&lt;head&gt;</strong> to ensure special characters and symbols display correctly on your page.</li>
+            <li>Along with the charset, place <strong>&lt;title&gt;My First Page&lt;/title&gt;</strong> in the <strong>&lt;head&gt;</strong>. This will set the tab name seen in the browser or search results.</li>
             <li>The opposite of <strong>&lt;head&gt;</strong> is <strong>&lt;body&gt;</strong>. Place <strong>&lt;body&gt;</strong> to contain all the content that we want to be displayed on our page (text, images, buttons, etc.).</li>
           </ol>
         </div>
@@ -122,12 +148,12 @@
 <section class="step-container" id="step2">
         <div class="step-text">
           <h2>Step 2: Create the Structural Layout</h2>
-          <p>Before adding text, we need to define the containers that will organize your page. We will use a main <strong>&lt;div&gt;</strong> to center everything, and <strong>&lt;section&gt;</strong> tags to separate your bio from your contact info.</p>
+          <p>We need to define the containers that will organize and hold the content on your page. We will use a main <strong>&lt;div&gt;</strong> to center everything, and <strong>&lt;section&gt;</strong> tags to separate your header, bio, and contact info.</p>
           
           <ol>
-            <li>Inside the <strong>&lt;body&gt;</strong>, create a <strong>&lt;div&gt;</strong>.</li>
-            <li>Inside that div, create three <strong>&lt;section&gt;</strong> elements.</li>
-            <li>These sections will eventually hold your Header, Bio, and Links.</li>
+            <li>Inside the <strong>&lt;body&gt;</strong>, create a <strong>&lt;div&gt;</strong> with the class="container" attribute.</li>
+            <li>Inside that div, create three <strong>&lt;section&gt;</strong> elements to hold your Header, Bio, and Links.</li>
+            <li>label each section with its attribute with id="attribute".</li>
           </ol>
         </div>
 
@@ -136,13 +162,13 @@
 &lt;body&gt;
   <span class="highlight">&lt;div class="container"&gt;
     &lt;section id="header"&gt;
-      &lt;/section&gt;
+    &lt;/section&gt;
 
     &lt;section id="bio"&gt;
-      &lt;/section&gt;
+    &lt;/section&gt;
 
     &lt;section id="contact"&gt;
-      &lt;/section&gt;
+    &lt;/section&gt;
   &lt;/div&gt;</span>
 &lt;/body&gt;</pre>
         </div>
@@ -150,67 +176,92 @@
 
       <section class="step-container" id="step3">
         <div class="step-text">
-          <h2>Step 3: Add Your Personal Information</h2>
-          <p>Now, fill your sections with actual content. This is where you introduce yourself to the world!</p>
+          <h2>Step 3: Add Your Content</h2>
+          <p>Now, place your content in the appropriate sections with the relevant tag. This is where you finally get to see the content on the page!</p>
+          <p>It is important that you only place information that you are fine with being public on a website that is available to the public.</p>
           
           <ol>
-            <li><strong>Header Section:</strong> Add an <strong>&lt;h1&gt;</strong> for your name and an <strong>&lt;img&gt;</strong> for your profile picture.</li>
-            <li><strong>Bio Section:</strong> Use an <strong>&lt;h2&gt;</strong> title and a <strong>&lt;p&gt;</strong> tag to write a short paragraph about yourself. Use <strong>&lt;strong&gt;</strong> to highlight key skills.</li>
-            <li><strong>Contact Section:</strong> Use an <strong>&lt;a&gt;</strong> tag (Anchor) to link to your email or social media, and a <strong>&lt;button&gt;</strong> for a "Contact Me" call to action.</li>
+            <li>In your header section place a <strong>&lt;h1&gt;</strong> to make your name be as large as a header similar to in any word processor. </li>
+            <li>Next we are going to take any profile picture you like and place it in the "FirstWebPage" folder alongside the "index.html" file.</li>
+              
+            <li>Also create a <strong>&lt;img&gt;</strong> tag in the header section and add the src="nameOfProfilePic.jpg" and alt="Profile Picture" attributes to it. You should substitute the name "nameOfProfilePic.jpg" for the name of your picture.</li>
+
+            <li>To fill out your bio section use a <strong>&lt;h2&gt;</strong> tag to make a sub-header that is smaller than your name and a <strong>&lt;p&gt;</strong> tag to write a short paragraph about yourself. Use multiple <strong>&lt;p&gt;</strong> tags to create more paragraphs.</li>
+
+            <li>In the contact section use an <strong>&lt;a&gt;</strong> tag to link to your email, social media, or any other site with an address.
           </ol>
         </div>
 
         <div class="step-visual">
           <pre>
 &lt;section id="header"&gt;<span class="highlight">
-    &lt;img src="profile.jpg" alt="My Profile Picture"&gt;
+    &lt;img src="nameOfProfilePic.jpg" alt="Profile Picture"&gt;
     &lt;h1&gt;Jane Doe&lt;/h1&gt;</span>
 &lt;/section&gt;
 
 &lt;section id="bio"&gt;<span class="highlight">
     &lt;h2&gt;About Me&lt;/h2&gt;
-    &lt;p&gt;I am a &lt;strong&gt;Web Developer&lt;/strong&gt; in training!&lt;/p&gt;</span>
+    &lt;p&gt;I am a Web Developer in training!&lt;/p&gt;</span>
 &lt;/section&gt;
 
 &lt;section id="contact"&gt;<span class="highlight">
     &lt;a href="mailto:hello@site.com"&gt;Email Me&lt;/a&gt;
-    &lt;button&gt;Download Resume&lt;/button&gt;</span>
+    &lt;a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"&gt;Video&lt;/a&gt;</span>
 &lt;/section&gt;</pre>
         </div>
       </section>
 
 
 
-      <section class="step-container">
-        <div class="step-text">
-          <h3>Step 4: Define Visual Styles</h3>
-          <p>
-            Navigate to <code>style.css</code> and apply these rules to set the
-            background color and typography:
-          </p>
-        </div>
+    <section class="step-container" id="step4">
+            <div class="step-text">
+              <h2>Step 4: Style Your Page</h2>
+              <p>
+                CSS changes the look of your page. To use it, place <strong>&lt;style&gt;</strong> tags inside your <strong>&lt;head&gt;</strong> section. We will focus on the three most important styles to make your page look professional.
+              </p>
+              
+              <ol>
+                <li>Use the <strong>.container</strong> selector to set <strong>max-width</strong> and <strong>margin</strong> to stop the contents from being too wide and to create a margin between the content and the side of the browser window.</li>
+                
+                <li>Set the <strong>color</strong> and <strong>background-color</strong> properties of <strong>h1</strong> and <strong>body</strong> to create a high-contrast theme that makes your content easy to read against the background. Feel free to change the colors to anything you would like while keeping in mind legibility.</li>
 
-        <div class="step-visual">
-          <pre>
-body {
-  background-color: #111;
-  color: #ccc;
-  font-family: sans-serif;
-}
-h1 {
-  color: #57c8ff;
-}         </pre>
-      
-        </div>
-      </section>
+                <li>Apply a <strong>font-family</strong> to the <strong>body</strong> tag to change the text from the default style of the browser to a cleaner look like sans-serif. This stops unpredictable default behavior from the browser and keeps the page looking the way you like.</li>
+              </ol>
+            </div>
+
+            <div class="step-visual">
+              <pre>
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+    <span class="highlight">
+  &lt;style&gt;
+    .container {
+    max-width: 900px;
+    margin: 0 auto;
+    }
+
+    h1 {
+    color: #57c8ff;
+    }
+
+    body {
+    background-color: #111;
+    color: white;
+    font-family: sans-serif;
+    }
+  &lt;/style&gt;</span>
+&lt;/head&gt;</pre>
+            </div>
+          </section>
 
       <section id="troubleshooting">
         <h3>Troubleshooting</h3>
-        <p>
-          If the page is blank, verify you saved the files. If colors aren't
-          changing, ensure the <code>href</code> in your HTML matches your CSS
-          filename exactly.
-        </p>
+        <p>If the page is blank, verify you saved the files.(CTRL+S)</p>
+        <p>If the page doesn't change try clicking on the port:5500 button on the bottom right of VS code and then relaunching the live server by clicking again.</p>
+        
+        
+
       </section>
 
       <section id="glossary">

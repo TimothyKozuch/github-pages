@@ -155,3 +155,11 @@ section p {
   color: #57c8ff;
   font-weight: bold; /* Optional: makes it stand out more */
 }
+
+figcaption {
+  color: #cdddf8; /* Uses the light blue text color from your intro */
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 8px;
+  text-align: center;
+}

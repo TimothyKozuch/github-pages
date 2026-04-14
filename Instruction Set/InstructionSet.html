@@ -55,6 +55,19 @@
       </section>
 
 
+      
+      <section id="glossary">
+        <h3>Glossary</h3>
+        <p>
+          <strong>HTML:</strong> The standard language used to create the structure of web content.<br />
+          <strong>CSS:</strong> The language used to control the visual presentation (layout, colors, and fonts) of a webpage.<br />
+          <strong>Tag:</strong> The building blocks of HTML (e.g., <strong>&lt;p&gt;</strong>) used to tell the browser what kind of content is being displayed.<br />
+          <strong>Attribute:</strong> Extra information inside a tag, like <strong>src</strong> for images or <strong>href</strong> for links.<br />
+          <strong>Element:</strong> The complete unit from the opening tag to the closing tag, including the content inside.
+        </p>
+      </section>
+
+
 
 
       <section id="Setup">
@@ -213,24 +226,24 @@
 
 
 
-    <section class="step-container" id="step4">
-            <div class="step-text">
-              <h2>Step 4: Style Your Page</h2>
-              <p>
-                CSS changes the look of your page. To use it, place <strong>&lt;style&gt;</strong> tags inside your <strong>&lt;head&gt;</strong> section. We will focus on the three most important styles to make your page look professional.
-              </p>
-              
-              <ol>
-                <li>Use the <strong>.container</strong> selector to set <strong>max-width</strong> and <strong>margin</strong> to stop the contents from being too wide and to create a margin between the content and the side of the browser window.</li>
-                
-                <li>Set the <strong>color</strong> and <strong>background-color</strong> properties of <strong>h1</strong> and <strong>body</strong> to create a high-contrast theme that makes your content easy to read against the background. Feel free to change the colors to anything you would like while keeping in mind legibility.</li>
+      <section class="step-container" id="step4">
+        <div class="step-text">
+          <h2>Step 4: Style Your Page</h2>
+          <p>
+            CSS changes the look of your page. To use it, place <strong>&lt;style&gt;</strong> tags inside your <strong>&lt;head&gt;</strong> section. We will focus on the three most important styles to make your page look professional.
+          </p>
+          
+          <ol>
+            <li>Use the <strong>.container</strong> selector to set <strong>max-width</strong> and <strong>margin</strong> to stop the contents from being too wide and to create a margin between the content and the side of the browser window.</li>
+            
+            <li>Set the <strong>color</strong> and <strong>background-color</strong> properties of <strong>h1</strong> and <strong>body</strong> to create a high-contrast theme that makes your content easy to read against the background. Feel free to change the colors to anything you would like while keeping in mind legibility.</li>
 
-                <li>Apply a <strong>font-family</strong> to the <strong>body</strong> tag to change the text from the default style of the browser to a cleaner look like sans-serif. This stops unpredictable default behavior from the browser and keeps the page looking the way you like.</li>
-              </ol>
-            </div>
+            <li>Apply a <strong>font-family</strong> to the <strong>body</strong> tag to change the text from the default style of the browser to a cleaner look like sans-serif. This stops unpredictable default behavior from the browser and keeps the page looking the way you like.</li>
+          </ol>
+        </div>
 
-            <div class="step-visual">
-              <pre>
+        <div class="step-visual">
+          <pre>
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;title&gt;My First Page&lt;/title&gt;
@@ -252,25 +265,21 @@
     }
   &lt;/style&gt;</span>
 &lt;/head&gt;</pre>
-            </div>
-          </section>
+        </div>
+      </section>
 
       <section id="troubleshooting">
         <h3>Troubleshooting</h3>
-        <p>If the page is blank, verify you saved the files.(CTRL+S)</p>
-        <p>If the page doesn't change try clicking on the port:5500 button on the bottom right of VS code and then relaunching the live server by clicking again.</p>
-        
-        
-
+        <ul>
+          <p>
+            <strong>Changes not appearing?</strong> Verify you saved your files in VS Code (CTRL+S or CMD+S).<br />
+            <strong>Broken Images:</strong> Ensure your image file is in the <strong>exact same folder</strong> as <strong>index.html</strong>. Check that the filename in your code matches the actual file name (including capitalization and extensions like <strong>.jpg</strong> vs <strong>.png</strong>).<br />
+            <strong>CSS not working:</strong> Ensure your <strong>&lt;style&gt;</strong> tags are placed inside the <strong>&lt;head&gt;</strong> section, not the <strong>&lt;body&gt;</strong>.<br />
+            <strong>Live Server issues:</strong> If the page doesn't change, try clicking the <strong>Port: 5500</strong> button at the bottom right of VS Code to stop it, then click <strong>Go Live</strong> again to restart.
+          </p>
+        </ul>
       </section>
 
-      <section id="glossary">
-        <p>
-          <strong>HTML:</strong> Standard language for web content structure.<br />
-          <strong>CSS:</strong> Language used for visual layout, colors, and
-          fonts.
-        </p>
-      </section>
     </div>
   </body>
 </html>

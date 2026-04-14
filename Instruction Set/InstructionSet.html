@@ -19,7 +19,7 @@
       <section id="intro">
         <h2>Introduction</h2>
         <p>
-          This instruction set guides novice users through learning how HTML and CSS can be used to create a webpage. HTML(hypertext markup language) and CSS (Cascading Style Sheet) are the foundation of any webpage that you see across the internet. 
+          This instruction set guides novice users through learning how HTML can be used to create a webpage. HTML(hypertext markup language) is the foundation of any webpage that you see across the internet. 
         </p>
         <ul style="margin-top: 1rem; color: #cdddf8">
           <li><strong>Total Time:</strong> __ minutes</li>
@@ -30,7 +30,7 @@
             <strong>Required Materials: </strong> 
             <p>1: A modern web browser like chrome</p>
             <p>
-              2: A code editor like VS Code (you can download it <a href="https://code.visualstudio.com/" class="link">here</a> and if you need additional help there are guides on youtube like <a href="https://www.youtube.com/watch?v=1W0hL6_uX9A" class="link">this</a>) 
+              2: A code editor like VS Code (you can download VS Code <a href="https://code.visualstudio.com/" class="link">here</a> and if you need additional help there are guides on youtube like <a href="https://www.youtube.com/watch?v=1W0hL6_uX9A" class="link">this</a>) 
             </p>
           </li>
         </ul>
@@ -63,7 +63,7 @@
             </p>
 
             <p>
-              D: Click on <em>File > New File</em> at the top left corner of VS code, like you did to open the folder, to create two new files and name them "index.html" and "style.css".
+              D: Click on <em>File > New File</em> at the top left corner of VS code, like you did to open the folder, to create a new file and name it "index.html".
             </p>
           </div>
           <div class="step-visual">
@@ -85,66 +85,97 @@
         </p>
       </section>
 
-      <section class="step-container" id="step2">
+
+      <section class="step-container" id="step1">
         <div class="step-text">
-          <h2>Step 1: Construct the HTML Skeleton</h2>
-          <p>Open <code>index.html</code> and establish the document's foundation and "behind-the-scenes" information:</p>
+          <h2>Step 1: Create the HTML Foundation</h2>
+          <p>
+            After creating the empty html file it should have automatically opened in VS Code. If it did not open double click on it in the left panel to open it up. In this section we will place the basic boilerplate used in HTML at the top of the file in order for the browser to interpret our page properly. 
+          </p>
           
-          <ul>
-            <li><strong>&lt;!DOCTYPE html&gt;</strong>: The declaration that tells the browser you're using HTML5.</li>
-            <li><strong>&lt;html&gt;</strong>: The Root Element that wraps every other piece of code.</li>
-            <li><strong>&lt;head&gt;</strong>: The Metadata Container for info that doesn't show up on the page.</li>
-            <li><strong>&lt;body&gt;</strong>: The Content Area where everything visible (text, images, buttons) lives.</li>
-            <li><strong>&lt;meta charset="UTF-8"&gt;</strong>: Ensures special characters display correctly.</li>
-            <li><strong>&lt;title&gt;</strong>: The Tab Name seen in the browser or search results.</li>
-            <li><strong>&lt;link rel="stylesheet" href="style.css"&gt;</strong>: The bridge that connects your HTML to your CSS file.</li>
-          </ul>
-
-          <h2>Step 2: Define the Boxes (Containers)</h2>
-          <p>Use containers to group elements and organize the layout of your page:</p>
-          
-          <ul>
-            <li><strong>&lt;div&gt;</strong>: A generic container used to group elements for styling.</li>
-            <li><strong>&lt;section&gt;</strong>: Defines a specific section of content, like an "About" area.</li>
-            <li><strong>&lt;article&gt;</strong>: Used for independent, self-contained content like a blog post.</li>
-            <li><strong>&lt;nav&gt;</strong>: Tells the browser that this box contains navigation links.</li>
-          </ul>
-
-          <h2>Step 3: Add the Content</h2>
-          <p>Fill your "boxes" with the elements the user will actually see and interact with:</p>
-          
-          <ul>
-            <li><strong>Headings (&lt;h1&gt;)</strong>: Used to show different levels of content hierarchy.</li>
-            <li><strong>&lt;p&gt;</strong>: Standard paragraphs used for blocks of text.</li>
-            <li><strong>&lt;strong&gt; &amp; &lt;em&gt;</strong>: Formatting tags for **bold** and *italics*.</li>
-            <li><strong>&lt;a&gt; (Anchor)</strong>: Creates links; requires the <code>href</code> attribute.</li>
-            <li><strong>&lt;img&gt;</strong>: Displays pictures using the <code>src</code> attribute.</li>
-            <li><strong>&lt;button&gt;</strong>: Creates a clickable button.</li>
-          </ul>
+          <ol>
+            <li>Place <strong>&lt;!DOCTYPE html&gt;</strong> at the very top to tell the browser you're using HTML5.</li>
+            <li>Next use <strong>&lt;html lang="en"&gt;&lt;/html&gt;</strong> to wrap our <strong>&lt;head&gt;</strong>(invisible information) and <strong>&lt;body&gt;</strong>(visible content) in one element.</li>
+            <li>To tell the browser what set of characters we are using, the title of the page, and any other metadata that won't actually appear on the page place the <strong>&lt;head&gt;</strong>.</li>
+            <li>Place <strong>&lt;meta charset="UTF-8"&gt;</strong> inside the <strong>&lt;head&gt;</strong> to ensures special characters and symbols display correctly on your page.</li>
+            <li>Along with the charset, place <strong>&lt;title&gt;My First Page&lt;title&gt;</strong> in the <strong>&lt;head&gt;</strong>. This will set the tab name seen in the browser or search results.</li>
+            <li>The opposite of <strong>&lt;head&gt;</strong> is <strong>&lt;body&gt;</strong>. Place <strong>&lt;body&gt;</strong> to contain all the content that we want to be displayed on our page (text, images, buttons, etc.).</li>
+          </ol>
         </div>
 
         <div class="step-visual">
           <pre>
-&lt;!DOCTYPE html&gt;
+<span class="highlight">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;My First Page&lt;/title&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;nav&gt;
-        &lt;a href="index.html"&gt;Home&lt;/a&gt;
-    &lt;/nav&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;My First Page&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
 
-    &lt;section&gt;
-        &lt;h1&gt;Hello World&lt;/h1&gt;
-        &lt;p&gt;This is a &lt;strong&gt;bold&lt;/strong&gt; start!&lt;/p&gt;
-        &lt;img src="image.jpg" alt="A nice view"&gt;
-        &lt;button&gt;Click Me&lt;/button&gt;
-    &lt;/section&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
+    &lt;/body&gt;
+&lt;/html&gt;</span></pre>
+        </div>
+      </section>
+
+
+<section class="step-container" id="step2">
+        <div class="step-text">
+          <h2>Step 2: Create the Structural Layout</h2>
+          <p>Before adding text, we need to define the containers that will organize your page. We will use a main <strong>&lt;div&gt;</strong> to center everything, and <strong>&lt;section&gt;</strong> tags to separate your bio from your contact info.</p>
+          
+          <ol>
+            <li>Inside the <strong>&lt;body&gt;</strong>, create a <strong>&lt;div&gt;</strong>.</li>
+            <li>Inside that div, create three <strong>&lt;section&gt;</strong> elements.</li>
+            <li>These sections will eventually hold your Header, Bio, and Links.</li>
+          </ol>
+        </div>
+
+        <div class="step-visual">
+          <pre>
+&lt;body&gt;
+  <span class="highlight">&lt;div class="container"&gt;
+    &lt;section id="header"&gt;
+      &lt;/section&gt;
+
+    &lt;section id="bio"&gt;
+      &lt;/section&gt;
+
+    &lt;section id="contact"&gt;
+      &lt;/section&gt;
+  &lt;/div&gt;</span>
+&lt;/body&gt;</pre>
+        </div>
+      </section>
+
+      <section class="step-container" id="step3">
+        <div class="step-text">
+          <h2>Step 3: Add Your Personal Information</h2>
+          <p>Now, fill your sections with actual content. This is where you introduce yourself to the world!</p>
+          
+          <ol>
+            <li><strong>Header Section:</strong> Add an <strong>&lt;h1&gt;</strong> for your name and an <strong>&lt;img&gt;</strong> for your profile picture.</li>
+            <li><strong>Bio Section:</strong> Use an <strong>&lt;h2&gt;</strong> title and a <strong>&lt;p&gt;</strong> tag to write a short paragraph about yourself. Use <strong>&lt;strong&gt;</strong> to highlight key skills.</li>
+            <li><strong>Contact Section:</strong> Use an <strong>&lt;a&gt;</strong> tag (Anchor) to link to your email or social media, and a <strong>&lt;button&gt;</strong> for a "Contact Me" call to action.</li>
+          </ol>
+        </div>
+
+        <div class="step-visual">
+          <pre>
+&lt;section id="header"&gt;<span class="highlight">
+    &lt;img src="profile.jpg" alt="My Profile Picture"&gt;
+    &lt;h1&gt;Jane Doe&lt;/h1&gt;</span>
+&lt;/section&gt;
+
+&lt;section id="bio"&gt;<span class="highlight">
+    &lt;h2&gt;About Me&lt;/h2&gt;
+    &lt;p&gt;I am a &lt;strong&gt;Web Developer&lt;/strong&gt; in training!&lt;/p&gt;</span>
+&lt;/section&gt;
+
+&lt;section id="contact"&gt;<span class="highlight">
+    &lt;a href="mailto:hello@site.com"&gt;Email Me&lt;/a&gt;
+    &lt;button&gt;Download Resume&lt;/button&gt;</span>
+&lt;/section&gt;</pre>
         </div>
       </section>
 
@@ -152,7 +183,7 @@
 
       <section class="step-container">
         <div class="step-text">
-          <h3>Step 3: Define Visual Styles</h3>
+          <h3>Step 4: Define Visual Styles</h3>
           <p>
             Navigate to <code>style.css</code> and apply these rules to set the
             background color and typography:

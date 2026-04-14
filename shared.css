@@ -117,7 +117,9 @@ section {
 
 .step-text li {
   margin-bottom: 0.5rem; /* Adds space between each list item */
-  list-style: disc;      /* Ensures bullet points are visible */
+}
+.step-text ol {
+  list-style-type: upper-alpha; /* This turns 1, 2, 3 into a, b, c */
 }
 
 /* Download Button Styling */
@@ -147,4 +149,9 @@ section p {
 .step-text ul, 
 .step-text ol {
   margin-left: 40px; /* 20px for paragraph alignment + 20px for bullets */
+}
+
+.highlight {
+  color: #57c8ff;
+  font-weight: bold; /* Optional: makes it stand out more */
 }
